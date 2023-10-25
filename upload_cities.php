@@ -2,32 +2,6 @@
 
 $ourData = file_get_contents("CitiesAndVillages.json");
 
-/*
-
-~200 000 запитів на сервер + 60,000*3 дій в коді
-1. треба отримати з бази данних список всiх мiст
-1.2. Переробити масив в формат як на прикладі: 
-$city_list = array(
-    '234' => array(
-        'city' => Дніпро,
-        'district_id' => 3
-    ),
-    '7946' => array(
-        'city_id' => Дніпро,
-        'district_id' => 19
-    ),
-    'Дніпрорудне' => array(
-        'city_id' => 986,
-        'district_id' => 3
-    )
-)
-
-1.3 Таким самим чином отримати список регіонів та дістріктів
-
-2. Перевірку ти робиш у себев коді (не відправляєш запити в бд) Через цикл перевіряєш
-*/
-
-
 $json_cities = json_decode($ourData, true);
 
 $last_region = '';
@@ -42,10 +16,10 @@ $first_time = microtime(true);
 
 foreach ($json_cities as $cities_key => $data) {
 
-    $category   = mysqli_real_escape_string($connection, $data['object_category']);
-    $region     = mysqli_real_escape_string($connection, $data['region']);
-    $community  = mysqli_real_escape_string($connection, $data['community']);
-    $object_name = mysqli_real_escape_string($connection, $data['object_name']);
+    $category       = mysqli_real_escape_string($connection, $data['object_category']);
+    $region         = mysqli_real_escape_string($connection, $data['region']);
+    $community      = mysqli_real_escape_string($connection, $data['community']);
+    $object_name    = mysqli_real_escape_string($connection, $data['object_name']);
 
     if($region != $last_region){
         $sql = "SELECT * FROM regions WHERE `name` LIKE '" . $region . "'";
@@ -95,10 +69,4 @@ foreach ($json_cities as $cities_key => $data) {
         mysqli_query($connection, $sql);
     }
 
-    /*if($cities_key >= 15000){
-        $end_time = microtime(true);
-        $sum_time = $end_time - $first_time;
-        var_dump($sum_time);
-        die();
-    }*/
 }
