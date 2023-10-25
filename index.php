@@ -17,6 +17,9 @@ if (!empty($_SESSION)) { ?>
         <div>
             <div class="uk-card uk-card-default uk-card-body">Item</div>
         </div>
+        <div>
+            <div class="uk-card uk-card-default uk-card-body">Item</div>
+        </div>
     </div>
 </div>
 
