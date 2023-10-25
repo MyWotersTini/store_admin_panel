@@ -3,15 +3,8 @@
 // ZAQzaq12
 include_once "config.php";
 
-//$test_code = encode('pass_mang4', 'mang4');
-
-// var_dump($test_code); 
-
-// die();
-
-
 function encode($unencoded,$key)
-{//Шифруем
+{ //Шифруем
     $string=base64_encode($unencoded);//Переводим в base64
 
     $arr=array();//Это массив
@@ -25,11 +18,3 @@ function encode($unencoded,$key)
 }
 
 
-/*
-Створити файл і підключити pass.php
-Ajax повертає $_POST;
-
-$login = $_POST['login'];
-$pass = encode($_POST['pass'], $login);
-Відправити запит до бд, якщо знайде результати то повернути json_success (дивитися в інеті як повернути json_success) = true, інакше false
-*/

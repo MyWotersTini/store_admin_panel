@@ -1,7 +1,5 @@
 <?php
 
-// SELECT students_list.*, groups_list.code, teachers_list.surname FROM `teachers_list`, groups_list, students_list  where groups_list.teacher = teachers_list.id and students_list.groups = groups_list.id;
-
 	$bd_access = array(
 		'host' => '127.0.0.1' ,
 		'login' => 'root',
