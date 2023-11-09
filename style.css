@@ -34,3 +34,31 @@
 .menu_icon{
     cursor: pointer;
 }
+
+/* table_edit */
+
+.table_edit-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.table_edit-content-item{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    margin-bottom: 3px;
+    padding: 15px 15px 30px;
+    
+    position: relative;
+}
+
+.table_edit-content-item .actions_block{
+    display: none;
+
+    position: absolute;
+    gap: 10px;
+}
+
+.table_edit-content-item:hover .actions_block{
+    display: flex;
+}
