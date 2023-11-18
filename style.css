@@ -62,3 +62,12 @@
 .table_edit-content-item:hover .actions_block{
     display: flex;
 }
+
+.table_edit-header-item{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.red{
+    color: red !important;
+}

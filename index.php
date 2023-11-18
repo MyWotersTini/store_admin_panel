@@ -32,7 +32,14 @@ if (!empty($_SESSION)) { ?>
     <div class="uk-margin">
         <div class="uk-inline" id="login-line">
             <span class="uk-form-icon" uk-icon="icon: user"></span>
-            <input class="uk-input" type="text" aria-label="Not clickable icon">
+            <!-- <input class="uk-input" type="text" aria-label="Not clickable icon"> -->
+            <?php 
+                get_input_field([
+                    'type'  => 'input', // select, textarea
+                    'format' => 'text',
+                    'class' => 'uk-input',
+                ]);
+            ?>
         </div>
             <div class="error_text" id="login_error" hidden></div>
     </div>

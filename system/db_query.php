@@ -2,15 +2,26 @@
 
 function get_categories(){
     global $connection;
-    $sql = "SELECT * FROM `categories`";
+    $sql = "SELECT categories.* , COUNT(title) as count FROM `categories` LEFT JOIN goods ON goods.category = categories.id GROUP BY categories.id;";
     return mysqli_query($connection, $sql);
 }
 
 function get_manufactures(){
     global $connection;
-    $sql = "SELECT * FROM `manufactures`";
+    $sql = "SELECT manufactures.* , COUNT(title) as count FROM `manufactures` LEFT JOIN goods ON goods.manufacturer = manufactures.id GROUP BY manufactures.id;";
     return mysqli_query($connection, $sql);
 }
+
+function get_manufacture_by_id($id){
+    global $connection;
+    $sql = "SELECT * FROM `manufactures` WHERE id = $id";
+    return mysqli_query($connection, $sql);
+}
+
+/*
+function get_count_(){
+    SELECT COUNT(*) as count FROM `goods` WHERE manufacturer=1 GROUP BY goods.manufacturer;
+}*/
 
 function get_goods(){
     global $connection;
