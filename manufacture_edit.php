@@ -26,10 +26,14 @@ $manufactures = get_manufactures();
                         <?php echo $item['name'] ?>
 
                         <div class="actions_block">
-                            <!-- має з'являтися при наведення на table_edit-content-item-td -->
-
                             <a href="manufacture_table_edit.php?id=<?php echo $item['id'] ?>">Edit</a>
-                            <a href="" class="red">Trash</a>
+                            <a 
+                                href="#modal_delete_table" 
+                                data-name   ="<?php echo $item['name'] ?>" 
+                                data-country="<?php echo $item['country'] ?>" 
+                                data-id     ="<?php echo $item['id'] ?>" 
+                                data-count  ="<?php echo $item['count'] ?>" 
+                                class="red">Trash</a>
                         </div>
                     </div>
                     <div class="table_edit-content-item-td"> <?php echo $item['country'] ?> </div>
@@ -39,5 +43,19 @@ $manufactures = get_manufactures();
         </div>
     </div>
 </div>
+
+<div id="modal_delete_table" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Delete Table <span></span>?</h2>
+        <p class="uk-text country_text">
+        </p>
+        <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <button class="uk-button uk-button-primary" type="button">Delete</button>
+        </p>
+    </div>
+</div>
+
+<script src="js/manufacture.js"></script>
 
 <?php include "footer.php"; ?>
