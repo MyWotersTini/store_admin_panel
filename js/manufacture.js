@@ -31,10 +31,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
                 if(data['success'] == false){
                     console.log(data['errors']);
-                    data['errors'].forEach((el, index) => {
-                        document.getElementById('manufacture_label_' + index).innerHTML = el;
-                    });
-                    this.removeAttribute("disabled");
+                    for(let index in data['errors']){
+                        //console.log(index);
+                        document.getElementById('manufacture_label_' + index).innerHTML = data['errors'][index];
+                    }
+                    edit_button.removeAttribute("disabled");
                 }else{
 
                 }
