@@ -30,11 +30,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 let data = JSON.parse(response);
 
                 if(data['success'] == false){
-                    console.log(data['errors']);
-                    data['errors'].forEach((el, index) => {
-                        document.getElementById('manufacture_label_' + index).innerHTML = el;
-                    });
-                    this.removeAttribute("disabled");
+                    // console.log(data['errors']);
+                    for(let index in data['errors']){
+                        
+                        document.getElementById('manufacture_label_' + index).innerHTML = data['errors'][index];
+                    }
+                    edit_button.removeAttribute("disabled");
                 }else{
 
                 }
