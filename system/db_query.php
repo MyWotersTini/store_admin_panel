@@ -8,7 +8,7 @@ function get_categories(){
 
 function get_manufactures(){
     global $connection;
-    $sql = "SELECT manufactures.* , COUNT(title) as count FROM `manufactures` LEFT JOIN goods ON goods.manufacturer = manufactures.id GROUP BY manufactures.id;";
+    $sql = "SELECT manufactures.* , COUNT(title) as count, countries.name as country FROM `manufactures` LEFT JOIN goods ON goods.manufacturer = manufactures.id LEFT JOIN countries ON manufactures.country_id = countries.id GROUP BY manufactures.id;";
     return mysqli_query($connection, $sql);
 }
 
@@ -18,14 +18,15 @@ function get_manufacture_by_id($id){
     return mysqli_query($connection, $sql);
 }
 
-/*
-function get_count_(){
-    SELECT COUNT(*) as count FROM `goods` WHERE manufacturer=1 GROUP BY goods.manufacturer;
-}*/
-
 function get_goods(){
     global $connection;
     $sql = "SELECT goods.*, manufactures.name AS manufacture_name, categories.name AS categori_name FROM `goods` , `manufactures` , `categories` WHERE goods.manufacturer = manufactures.id AND goods.category = categories.id;";
+    return mysqli_query($connection, $sql);
+}
+
+function get_countries(){
+    global $connection;
+    $sql = "SELECT * FROM `countries`";
     return mysqli_query($connection, $sql);
 }
  /* ****************** */
