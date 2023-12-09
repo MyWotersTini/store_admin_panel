@@ -8,6 +8,7 @@
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.19/dist/css/uikit.min.css" />
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 
@@ -28,8 +29,8 @@
 
         <ul class="uk-nav uk-nav-default">
             <li class="uk-nav-header">Menu</li>
-            <li><a href="http://managment/"><span class="uk-margin-small-right" uk-icon="icon: home"></span> Home</a></li>
-            <li><a href="http://managment/manufacture_edit.php#"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Manufactures</a></li>
+            <li><a href="/"><span class="uk-margin-small-right" uk-icon="icon: home"></span> Home</a></li>
+            <li><a href="/manufacture_edit.php"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Manufactures</a></li>
             <li class="uk-nav-divider"></li>
             <li><a id="logout" href="#"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> Logout</a></li>
         </ul>
