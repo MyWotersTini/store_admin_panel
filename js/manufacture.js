@@ -34,6 +34,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 let data = JSON.parse(response);
 
                 if(data['success'] == false){
+
                     console.log(data['errors']);
                     for(let index in data['errors']){
                         //console.log(index);

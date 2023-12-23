@@ -9,6 +9,7 @@ function encode($unencoded,$key)
 
     $arr=array();//Это массив
     $x=0;
+    $newstr = '';
     while ($x++< strlen($string))
     {//Цикл
         $arr[$x-1] = md5(md5($key.$string[$x-1]).$key);//Почти чистый md5
