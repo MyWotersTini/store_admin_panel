@@ -1,7 +1,11 @@
 window.addEventListener("DOMContentLoaded", (event) => {
 
     let edit_button = document.getElementById('manufacture_edit_button');
-    
+    let delete_button = document.getElementById('a[href="modal_delete_table"]');
+
+    if(delete_button)
+        delete_button.forEach
+    if(edit_button)
     edit_button.addEventListener("click", function(){
 
         this.setAttribute('disabled', true);
@@ -37,13 +41,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     }
                     edit_button.removeAttribute("disabled");
                 }else{
-
+                    UIkit.notification({message: data['success'], status: 'success'})  
                 }
+
+                edit_button.removeAttribute("disabled");
             },
         }); 
-        // за допомогою ajax відправити дані на сервак для обробки (воно заміню по id в базе даних й повертає результат)
-        // Отримуєш результат, бачиш що все гуд, видаєш вспливаюче повідомлення що все гуд (uikit)
-
     });
     
 });
