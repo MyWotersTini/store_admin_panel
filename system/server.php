@@ -51,15 +51,12 @@ function manufacture_edit($data){
 
     global $connection;
     $sql = "UPDATE `manufactures` SET `name` = '" . $data['name'] . "', `country_id` = '" . $data['country'] . "' WHERE `manufactures`.`id` = " . $data['id'];
-    // var_dump($sql);
-    // die;
     mysqli_query($connection, $sql);
 
     echo json_encode(['success' => 'Дані успішно збережено.']);
 
     die;
     
-    //перевірити що передані значення не пусті. якщо пусті то повернути json error, інакше зберегти данні повернути json succes
 }
 
 function review_access($params){
