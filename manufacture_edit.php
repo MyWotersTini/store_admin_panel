@@ -27,7 +27,7 @@ $manufactures = get_manufactures();
 
                         <div class="actions_block">
                             <a href="manufacture_table_edit.php?id=<?php echo $item['id'] ?>">Edit</a>
-                            <a 
+                            <a  
                                 href="#modal_delete_table" 
                                 data-name   ="<?php echo $item['name'] ?>" 
                                 data-country="<?php echo $item['country'] ?>" 
@@ -49,7 +49,7 @@ $manufactures = get_manufactures();
         <h2 class="uk-modal-title">Delete Table <span></span>?</h2>
         <p class="uk-text-right">
             <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-            <button class="uk-button uk-button-primary" type="button">Delete</button>
+            <button id="manufacture_delete_button"  class="uk-button uk-button-primary" type="button">Delete</button>
         </p>
     </div>
 </div>
