@@ -71,3 +71,8 @@
 .red{
     color: red !important;
 }
+
+/* Modals */
+#modal_delete_table .uk-modal-title span{
+    font-weight: 700;
+}
