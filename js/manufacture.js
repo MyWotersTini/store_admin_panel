@@ -21,6 +21,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
 function delete_manufacture() {
     let manufacture_delete_button = document.getElementById('manufacture_delete_button');
     let manufacture_id = manufacture_delete_button.getAttribute('manufacture_id');
+    $.ajax({
+        url: 'system/server.php',
+        type: 'POST',
+        data: {
+            'action' : 'manufacture_delete',
+            'id' : manufacture_id 
+        },
+        success: function( response ) {
+            let data = JSON.parse(response);
+
+        }
+    }); 
+
     console.log(manufacture_id);
 }
 
@@ -71,4 +84,5 @@ function edit_func(){
             edit_button.removeAttribute("disabled");
         },
     }); 
+
 }

@@ -14,6 +14,9 @@ if (!empty($_POST) and !empty($_POST['action'])) {
         case 'manufacture_edit':
             manufacture_edit($_POST);
             break;
+        
+        case 'manufacture_delete':
+            manufacture_delete($_POST);
         default:
             # code...
             break;
@@ -88,3 +91,9 @@ function review_access($params){
     return;
 }
 
+function manufacture_delete($data){
+    global $connection;
+    DELETE FROM `manufactures` WHERE `manufactures`.`id` = 5
+    mysqli_query($connection, $sql);
+
+}
