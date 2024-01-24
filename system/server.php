@@ -14,6 +14,10 @@ if (!empty($_POST) and !empty($_POST['action'])) {
         case 'manufacture_edit':
             manufacture_edit($_POST);
             break;
+
+        case 'manufacture_add':
+            manufacture_add($_POST);
+            break;
         
         case 'manufacture_delete':
             manufacture_delete($_POST);
@@ -21,6 +25,58 @@ if (!empty($_POST) and !empty($_POST['action'])) {
             # code...
             break;
     }
+}
+
+function manufacture_add($data){
+    global $connection;
+
+    $error = [
+        'success' => true
+    ];
+
+    if(empty($data['name'])){
+
+        $error['success'] = false;
+        $error['errors']['name'] = 'Порожне поле';
+    }else if(strlen($data['name']) >= 100){
+        
+        $error['success'] = false;
+        $error['errors']['name'] = 'Завелике поле';
+    }else{
+
+        $sql    = "SELECT * FROM `manufactures` WHERE name='" . $data['name'] . "'";
+        $result = mysqli_query($connection, $sql);
+        
+        if($result->num_rows > 0){
+
+            $error['success'] = false;
+            $error['errors']['name'] = 'Така назва вже є';
+        }
+    }
+    
+    if(empty($data['country'])){
+
+        $error['success'] = false;
+        $error['errors']['country'] = 'Не коректні дані';
+    }
+    
+    $sql = "INSERT INTO `manufactures` (`id`, `name`, `country_id`) VALUES (NULL, '" . $data['name'] . "', '" . $data['country'] . "');";
+    mysqli_query($connection, $sql);
+
+    if($error['success'] == false){
+        //http_response_code(400);
+        echo json_encode($error);
+
+        die;
+    }
+
+    
+
+    echo json_encode(['success' => 'Дані успішно збережено.']);
+
+    die;
+    
+    //перевірити що передані значення не пусті. якщо пусті то повернути json error, інакше зберегти данні повернути json succes
 }
 
 function manufacture_edit($data){
@@ -93,7 +149,8 @@ function review_access($params){
 
 function manufacture_delete($data){
     global $connection;
-    DELETE FROM `manufactures` WHERE `manufactures`.`id` = 5
+    $sql = "DELETE FROM `manufactures` WHERE `manufactures`.`id` = " . $data['id'];
     mysqli_query($connection, $sql);
-
+    echo json_encode(['status' => 'success', 'massage' => $_SESSION["user_id"]]);
+    return;
 }

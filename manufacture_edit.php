@@ -1,58 +1,64 @@
 <?php
 include_once "config.php";
 
-if (empty($_SESSION)) {
+if (empty($_SESSION) || empty($_GET['id'])) {
+    header("Location: /");
+    exit;
+}
+
+$result = get_manufacture_by_id($_GET['id']);
+$countries = get_countries();
+// $manufacture = $result->fetch_row();
+$manufacture = mysqli_fetch_assoc($result);
+// var_dump($manufacture);
+
+if (empty($manufacture)) {
     header("Location: /");
     exit;
 }
 
 include "header.php";
 
-$manufactures = get_manufactures();
 ?>
 
-<div class="table_edit">
-    <div class="table_edit-container uk-container" >
-        <div class="table_edit-header">
-            <div class="table_edit-header-item"> Name </div>
-            <div class="table_edit-header-item"> Country </div>
-            <div class="table_edit-header-item"> Count </div>
-        </div>
-        <div class="table_edit-content">
-            
-            <?php foreach($manufactures as $item){ ?>
-                <div class="table_edit-content-item"> 
-                    <div class="table_edit-content-item-td"> 
-                        <?php echo $item['name'] ?>
+<nav aria-label="Breadcrumb">
+    <ul class="uk-breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/manufacture_edit.php">Manufactures</a></li>
+        <li><a href="#">$manufacture title</a></li>
+    </ul>
+</nav>
 
-                        <div class="actions_block">
-                            <a href="manufacture_table_edit.php?id=<?php echo $item['id'] ?>">Edit</a>
-                            <a  
-                                href="#modal_delete_table" 
-                                data-name   ="<?php echo $item['name'] ?>" 
-                                data-country="<?php echo $item['country'] ?>" 
-                                data-id     ="<?php echo $item['id'] ?>" 
-                                data-count  ="<?php echo $item['count'] ?>" 
-                                class="red">Trash</a>
-                        </div>
-                    </div>
-                    <div class="table_edit-content-item-td"> <?php echo $item['country'] ?> </div>
-                    <div class="table_edit-content-item-td"> <?php echo $item['count'] ?>  </div>
+<div class="manufacture_form_edit">
+    <div class="first_text">Редагування</div>
+    <div class="main_edit">
+        <div class="edit_items">
+            <div class="edit_items-line">
+                <div class="edit_items-line-name">Name</div>
+                <div class="edit_items-line-input">
+                    <input id="manufacture_name" type="text" value="<?php echo $manufacture['name']?>">
+                    <label id="manufacture_label_name" for="manufacture_name"></label>
                 </div>
-            <?php } ?>
+            </div>
+            <div class="edit_items-line">
+                <div class="edit_items-line-name">Country</div>
+                <div class="edit_items-line-input">
+                    <select id="manufacture_country">
+                        <?php foreach ($countries as $key => $value): ?>
+                            <option value="<?php echo $value['id'] ?>"
+                                <?php echo ($value['id'] == $manufacture['country_id']) ? 'selected' : '' ?>
+                            >
+                            <?php echo $value['name'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <label id="manufacture_label_country" for="manufacture_country"></label>
+                </div>
+            </div>
+        </div>
+        <div class="submit_item">
+            <button id="manufacture_edit_button" manufacture_id="<?php echo $manufacture['id']?>">Save</button>
         </div>
     </div>
-</div>
-
-<div id="modal_delete_table" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body">
-        <h2 class="uk-modal-title">Delete Table <span></span>?</h2>
-        <p class="uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-            <button id="manufacture_delete_button" class="uk-button uk-button-primary" type="button">Delete</button>
-        </p>
-    </div>
-</div>
 
 <script src="js/manufacture.js"></script>
 

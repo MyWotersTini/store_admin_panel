@@ -3,6 +3,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let edit_button = document.getElementById('manufacture_edit_button');
     let manufacture_delete_button = document.getElementById('manufacture_delete_button');
     let delete_button = document.querySelectorAll('a[href="#modal_delete_table"]');
+    let add_button = document.getElementById('manufacture_add_button');
 
     if(delete_button)
         delete_button.forEach((item) => {
@@ -11,10 +12,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
             });
     });
 
+    if(add_button)
+        add_button.addEventListener("click", add_function);
+
     if(edit_button)
         edit_button.addEventListener("click", edit_func);
+
     if(manufacture_delete_button)
-    manufacture_delete_button.addEventListener("click", delete_manufacture);
+        manufacture_delete_button.addEventListener("click", delete_manufacture);
     
 });
 
@@ -29,8 +34,8 @@ function delete_manufacture() {
             'id' : manufacture_id 
         },
         success: function( response ) {
-            let data = JSON.parse(response);
 
+            location.reload();
         }
     }); 
 
@@ -45,6 +50,42 @@ function open_delete_modal(item){
     item.getAttribute('data-country') + ')';
 
     document.getElementById('manufacture_delete_button').setAttribute('manufacture_id', item.getAttribute('data-id'));
+}
+
+function add_function(){
+    let add_button = document.getElementById('manufacture_add_button');
+
+    add_button.setAttribute('disabled', true);
+
+    let manufacture_name    = document.getElementById('manufacture_name').value;
+    let manufacture_country = document.getElementById('manufacture_country').value;
+
+    $.ajax({
+        url: 'system/server.php',
+        type: 'POST',
+        data: {
+            'action' : 'manufacture_add',
+            'name' : manufacture_name,
+            'country' : manufacture_country,
+        },
+        success: function( response ) {
+            let data = JSON.parse(response);
+
+            if(data['success'] == false){
+
+                console.log(data['errors']);
+                for(let index in data['errors']){
+                    //console.log(index);
+                    document.getElementById('manufacture_label_' + index).innerHTML = data['errors'][index];
+                }
+                add_button.removeAttribute("disabled");
+            }else{
+                UIkit.notification({message: data['success'], status: 'success'})  
+            }
+
+            add_button.removeAttribute("disabled");
+        },
+    });
 }
 
 function edit_func(){
