@@ -109,6 +109,18 @@ function manufacture_edit($data){
     }
 
     global $connection;
+
+    
+     $sql = "SELECT id FROM manufactures WHERE name = '" . $data['name'] . "'";
+     $result = mysqli_query($connection, $sql);
+ 
+     if ($result && mysqli_num_rows($result) > 0) {
+         $error['success'] = false;
+         $error['errors']['name'] = 'Компанія з таким іменем вже існує в іншій країні.';
+         echo json_encode($error);
+         die;
+     } 
+
     $sql = "UPDATE `manufactures` SET `name` = '" . $data['name'] . "', `country_id` = '" . $data['country'] . "' WHERE `manufactures`.`id` = " . $data['id'];
     // var_dump($sql);
     // die;

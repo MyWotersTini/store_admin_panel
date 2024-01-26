@@ -26,7 +26,7 @@ $manufactures = get_manufactures();
                         <?php echo $item['name'] ?>
 
                         <div class="actions_block">
-                            <a href="manufacture_list.php?id=<?php echo $item['id'] ?>">Edit</a>
+                            <a href="manufacture_edit.php?id=<?php echo $item['id'] ?>">Edit</a>
                             <a  
                                 href="#modal_delete_table" 
                                 data-name   ="<?php echo $item['name'] ?>" 
