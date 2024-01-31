@@ -111,7 +111,7 @@ function manufacture_edit($data){
     global $connection;
 
     
-     $sql = "SELECT id FROM manufactures WHERE name = '" . $data['name'] . "'";
+     $sql = "SELECT id FROM manufactures WHERE name = '" . $data['name'] . "' AND id != " . $data['id'];
      $result = mysqli_query($connection, $sql);
  
      if ($result && mysqli_num_rows($result) > 0) {

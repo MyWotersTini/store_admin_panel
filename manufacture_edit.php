@@ -24,7 +24,7 @@ include "header.php";
 <nav aria-label="Breadcrumb">
     <ul class="uk-breadcrumb">
         <li><a href="/">Home</a></li>
-        <li><a href="/manufacture_edit.php">Manufactures</a></li>
+        <li><a href="/manufacture_list.php">Manufactures</a></li>
         <li><a href="#">$manufacture title</a></li>
     </ul>
 </nav>
