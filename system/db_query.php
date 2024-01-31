@@ -6,6 +6,12 @@ function get_categories(){
     return mysqli_query($connection, $sql);
 }
 
+function get_category_by_id($id){
+    global $connection;
+    $sql = "SELECT * FROM `categories` WHERE id = $id";
+    return mysqli_query($connection, $sql);
+}
+
 function get_manufactures(){
     global $connection;
     $sql = "SELECT manufactures.* , COUNT(title) as count, countries.name as country FROM `manufactures` LEFT JOIN goods ON goods.manufacturer = manufactures.id LEFT JOIN countries ON manufactures.country_id = countries.id GROUP BY manufactures.id;";
