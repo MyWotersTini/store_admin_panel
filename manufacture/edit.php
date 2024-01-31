@@ -1,5 +1,5 @@
 <?php
-include_once "config.php";
+include_once "../config.php";
 
 if (empty($_SESSION) || empty($_GET['id'])) {
     header("Location: /");
@@ -17,15 +17,15 @@ if (empty($manufacture)) {
     exit;
 }
 
-include "header.php";
+include "../header.php";
 
 ?>
 
 <nav aria-label="Breadcrumb">
     <ul class="uk-breadcrumb">
         <li><a href="/">Home</a></li>
-        <li><a href="/manufacture_list.php">Manufactures</a></li>
-        <li><a href="#">$manufacture title</a></li>
+        <li><a href="/manufacture">Manufactures</a></li>
+        <li><a href="#"><?php echo $manufacture['name']?></a></li>
     </ul>
 </nav>
 
@@ -60,6 +60,6 @@ include "header.php";
         </div>
     </div>
 
-<script src="js/manufacture.js"></script>
+<script src="/js/manufacture.js"></script>
 
-<?php include "footer.php"; ?>
+<?php include "../footer.php"; ?>

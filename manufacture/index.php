@@ -1,12 +1,12 @@
 <?php
-include_once "config.php";
+include_once "../config.php";
 
 if (empty($_SESSION)) {
     header("Location: /");
     exit;
 }
 
-include "header.php";
+include "../header.php";
 
 $manufactures = get_manufactures();
 ?>
@@ -26,7 +26,7 @@ $manufactures = get_manufactures();
                         <?php echo $item['name'] ?>
 
                         <div class="actions_block">
-                            <a href="manufacture_edit.php?id=<?php echo $item['id'] ?>">Edit</a>
+                            <a href="edit.php?id=<?php echo $item['id'] ?>">Edit</a>
                             <a  
                                 href="#modal_delete_table" 
                                 data-name   ="<?php echo $item['name'] ?>" 
@@ -55,9 +55,9 @@ $manufactures = get_manufactures();
 </div>
 
 <p uk-margin>
-    <a class="uk-button uk-button-default add-button" href="/manufacture_add.php">ADD</a>
+    <a class="uk-button uk-button-default add-button" href="/manufacture/add.php">ADD</a>
 </p>
 
-<script src="js/manufacture.js"></script>
+<script src="/js/manufacture.js"></script>
 
-<?php include "footer.php"; ?>
+<?php include "../footer.php"; ?>

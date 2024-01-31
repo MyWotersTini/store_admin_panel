@@ -1,9 +1,17 @@
 <?php 
-include_once "config.php";
-include "header.php";
+include_once "../config.php";
+include "../header.php";
 
 $countries = get_countries();
 ?>
+
+<nav aria-label="Breadcrumb">
+    <ul class="uk-breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/manufacture">Manufactures</a></li>
+        <li><a href="#">Create new manufacture</a></li>
+    </ul>
+</nav>
 
 <form class="uk-form-horizontal uk-margin-large">
 
@@ -32,6 +40,6 @@ $countries = get_countries();
     <button class="uk-button uk-button-default" id="manufacture_add_button">ADD</button>
 </p>
 
-<script src="js/manufacture.js"></script>
+<script src="/js/manufacture.js"></script>
 
-<?php include "footer.php"; ?>
+<?php include "../footer.php"; ?>
