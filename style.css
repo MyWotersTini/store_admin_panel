@@ -68,6 +68,11 @@
     margin-right: 5px;
 }
 
+.table_top_panel{
+    display: flex;
+    justify-content: space-between;
+}
+
 .red{
     color: red !important;
 }

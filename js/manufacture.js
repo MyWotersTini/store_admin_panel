@@ -27,7 +27,7 @@ function delete_manufacture() {
     let manufacture_delete_button = document.getElementById('manufacture_delete_button');
     let manufacture_id = manufacture_delete_button.getAttribute('manufacture_id');
     $.ajax({
-        url: 'system/server.php',
+        url: '/system/server.php',
         type: 'POST',
         data: {
             'action' : 'manufacture_delete',
@@ -61,7 +61,7 @@ function add_function(){
     let manufacture_country = document.getElementById('manufacture_country').value;
 
     $.ajax({
-        url: 'system/server.php',
+        url: '/system/server.php',
         type: 'POST',
         data: {
             'action' : 'manufacture_add',
@@ -99,7 +99,7 @@ function edit_func(){
     let manufacture_id      = edit_button.getAttribute('manufacture_id');
     
     $.ajax({
-        url: 'system/server.php',
+        url: '/system/server.php',
         type: 'POST',
         data: {
             'action' : 'manufacture_edit',

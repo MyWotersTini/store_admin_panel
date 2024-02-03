@@ -12,9 +12,14 @@ function get_category_by_id($id){
     return mysqli_query($connection, $sql);
 }
 
-function get_manufactures(){
+function get_manufactures($args){
     global $connection;
-    $sql = "SELECT manufactures.* , COUNT(title) as count, countries.name as country FROM `manufactures` LEFT JOIN goods ON goods.manufacturer = manufactures.id LEFT JOIN countries ON manufactures.country_id = countries.id GROUP BY manufactures.id;";
+    $sql = "SELECT manufactures.* , COUNT(title) as count, countries.name as country FROM `manufactures` LEFT JOIN goods ON goods.manufacturer = manufactures.id LEFT JOIN countries ON manufactures.country_id = countries.id";
+    if($args['search']){
+        $sql .= " WHERE manufactures.name LIKE '%" . $args['search'] ."%'";
+    }
+    $sql .= " GROUP BY manufactures.id";
+    // var_dump($sql);
     return mysqli_query($connection, $sql);
 }
 

@@ -8,11 +8,23 @@ if (empty($_SESSION)) {
 
 include "../header.php";
 
-$manufactures = get_manufactures();
+$args         = array(
+    'search' => $_GET['search'] ?: '',
+);
+$manufactures = get_manufactures($args);
 ?>
+
 
 <div class="table_edit">
     <div class="table_edit-container uk-container" >
+        <div class="table_top_panel"  uk-margin>
+            <a class="uk-button uk-button-default add-button" href="/manufacture/add.php">Create new manufacture</a>
+            <form class="uk-search uk-search-default" method="GET">
+                <button class="uk-search-icon-flip" uk-search-icon></button>
+                <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search">
+            </form>
+        </div>
+
         <div class="table_edit-header">
             <div class="table_edit-header-item"> Name </div>
             <div class="table_edit-header-item"> Country </div>
@@ -53,10 +65,6 @@ $manufactures = get_manufactures();
         </p>
     </div>
 </div>
-
-<p uk-margin>
-    <a class="uk-button uk-button-default add-button" href="/manufacture/add.php">ADD</a>
-</p>
 
 <script src="/js/manufacture.js"></script>
 

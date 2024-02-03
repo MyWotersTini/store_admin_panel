@@ -27,7 +27,7 @@ function delete_category() {
     let category_delete_button = document.getElementById('category_delete_button');
     let category_id = category_delete_button.getAttribute('category_id');
     $.ajax({
-        url: 'system/server.php',
+        url: '/system/server.php',
         type: 'POST',
         data: {
             'action' : 'category_delete',
@@ -49,6 +49,10 @@ function open_delete_modal(item){
     document.getElementById('category_delete_button').setAttribute('category_id', item.getAttribute('data-id'));
 }
 
+function category_list_location(){
+    location.replace('/category'); 
+}
+
 function add_function(){
     let add_button = document.getElementById('category_add_button');
 
@@ -57,7 +61,7 @@ function add_function(){
     let category_name    = document.getElementById('category_name').value;
 
     $.ajax({
-        url: 'system/server.php',
+        url: '/system/server.php',
         type: 'POST',
         data: {
             'action' : 'category_add',
@@ -75,10 +79,10 @@ function add_function(){
                 }
                 add_button.removeAttribute("disabled");
             }else{
-                UIkit.notification({message: data['success'], status: 'success'})  
+                UIkit.notification({message: data['success'], status: 'success'})
+                // location.replace('/category'); 
+                setTimeout(category_list_location, 1500); 
             }
-
-            add_button.removeAttribute("disabled");
         },
     });
 }
@@ -93,7 +97,7 @@ function edit_func(){
     let category_id      = edit_button.getAttribute('category_id');
     
     $.ajax({
-        url: 'system/server.php',
+        url: '/system/server.php',
         type: 'POST',
         data: {
             'action' : 'category_edit',
