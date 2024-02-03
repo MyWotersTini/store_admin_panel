@@ -21,6 +21,20 @@ if (!empty($_POST) and !empty($_POST['action'])) {
         
         case 'manufacture_delete':
             manufacture_delete($_POST);
+            break;
+
+        case 'category_edit':
+            category_edit($_POST);
+            break;
+
+        case 'category_add':
+            category_add($_POST);
+            break;
+        
+        case 'category_delete':
+            category_delete($_POST);   
+            break;
+             
         default:
             # code...
             break;
@@ -162,6 +176,92 @@ function review_access($params){
 function manufacture_delete($data){
     global $connection;
     $sql = "DELETE FROM `manufactures` WHERE `manufactures`.`id` = " . $data['id'];
+    mysqli_query($connection, $sql);
+    echo json_encode(['status' => 'success', 'massage' => $_SESSION["user_id"]]);
+    return;
+}
+
+function category_add($data){
+    global $connection;
+
+    $error = [
+        'success' => true
+    ];
+
+    if(empty($data['name'])){
+
+        $error['success'] = false;
+        $error['errors']['name'] = 'Порожне поле';
+    }else if(strlen($data['name']) >= 100){
+        
+        $error['success'] = false;
+        $error['errors']['name'] = 'Завелике поле';
+    }else{
+
+        $sql    = "SELECT * FROM `categories` WHERE name='" . $data['name'] . "'";
+        $result = mysqli_query($connection, $sql);
+        
+        if($result->num_rows > 0){
+
+            $error['success'] = false;
+            $error['errors']['name'] = 'Така назва вже є';
+        }
+    }   
+    
+    $sql = "INSERT INTO `categories` (`id`, `name`) VALUES (NULL, '" . $data['name'] . "')";
+    mysqli_query($connection, $sql);
+
+    if($error['success'] == false){
+        //http_response_code(400);
+        echo json_encode($error);
+
+        die;
+    }
+
+    echo json_encode(['success' => 'Дані успішно збережено.']);
+
+    die;
+}
+
+function category_edit($data){
+
+    $error = [
+        'success' => true
+    ];
+
+    if(empty($data['name'])){
+
+        $error['success'] = false;
+        $error['errors']['name'] = 'Порожне поле';
+    }else if(strlen($data['name']) >= 100){
+        
+        $error['success'] = false;
+        $error['errors']['name'] = 'Завелике поле';
+    }
+
+    if($error['success'] == false){
+        //http_response_code(400);
+        echo json_encode($error);
+
+        die;
+    }
+
+    global $connection;
+
+
+    $sql = "UPDATE `categories` SET `name` = '" . $data['name'] . "' WHERE `categories`.`id` = " . $data['id'];
+    // var_dump($sql);
+    // die;
+    mysqli_query($connection, $sql);
+
+    echo json_encode(['success' => 'Дані успішно збережено.']);
+
+    die;
+}
+
+function category_delete($data){
+    global $connection;
+    $sql = "DELETE FROM `categories` WHERE `categories`.`id` = " . $data['id'];
     mysqli_query($connection, $sql);
     echo json_encode(['status' => 'success', 'massage' => $_SESSION["user_id"]]);
     return;
