@@ -6,16 +6,15 @@ include "../header.php";
 <nav aria-label="Breadcrumb">
     <ul class="uk-breadcrumb">
         <li><a href="/">Home</a></li>
-        <li><a href="/category">Categoies</a></li>
+        <li><a href="/category">Categories</a></li>
         <li><a href="#">Create new category</a></li>
     </ul>
 </nav>
 
 <form class="uk-form-horizontal uk-margin-large">
-
     <div class="uk-margin">
         <label class="uk-form-label" for="category_name"> Category Name </label>
-        <div class="uk-form-controls">
+        <div>
             <input class="uk-input" id="category_name" type="text">
         </div>
         <label id="category_label_name" for="category_name"></label>

@@ -2,7 +2,11 @@
 
 function get_categories(){
     global $connection;
-    $sql = "SELECT categories.* , COUNT(title) as count FROM `categories` LEFT JOIN goods ON goods.category = categories.id GROUP BY categories.id;";
+    $sql = "SELECT * FROM (SELECT categories.* , COUNT(title) as count FROM `categories` LEFT JOIN goods ON goods.category = categories.id GROUP BY categories.id) as d";
+    if($args['search']){
+        $sql .= " WHERE d.name LIKE '%" . $args['search'] . "%'";
+    }
+    // $sql .= " GROUP BY categories.id";
     return mysqli_query($connection, $sql);
 }
 
@@ -14,11 +18,11 @@ function get_category_by_id($id){
 
 function get_manufactures($args){
     global $connection;
-    $sql = "SELECT manufactures.* , COUNT(title) as count, countries.name as country FROM `manufactures` LEFT JOIN goods ON goods.manufacturer = manufactures.id LEFT JOIN countries ON manufactures.country_id = countries.id";
+    $sql = "SELECT * FROM (SELECT manufactures.* , COUNT(title) as count, countries.name as country FROM `manufactures` LEFT JOIN goods ON goods.manufacturer = manufactures.id LEFT JOIN countries ON manufactures.country_id = countries.id GROUP BY manufactures.id) as d";
     if($args['search']){
-        $sql .= " WHERE manufactures.name LIKE '%" . $args['search'] ."%'";
+        $sql .= " WHERE d.name LIKE '%" . $args['search'] . "%' OR d.country LIKE '%" . $args['search'] . "%' OR d.count LIKE '%" . $args['search'] . "%';";
     }
-    $sql .= " GROUP BY manufactures.id";
+    // $sql .= " GROUP BY manufactures.id";
     // var_dump($sql);
     return mysqli_query($connection, $sql);
 }

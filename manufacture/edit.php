@@ -28,22 +28,21 @@ include "../header.php";
         <li><a href="#"><?php echo $manufacture['name']?></a></li>
     </ul>
 </nav>
-
-<div class="manufacture_form_edit">
-    <div class="first_text">Редагування</div>
+<div id="manufacture_form_edit" class="form_edit">
     <div class="main_edit">
+    <div class="first_text">Editing</div>
         <div class="edit_items">
             <div class="edit_items-line">
                 <div class="edit_items-line-name">Name</div>
                 <div class="edit_items-line-input">
-                    <input id="manufacture_name" type="text" value="<?php echo $manufacture['name']?>">
+                    <input id="manufacture_name" class="uk-input" type="text" value="<?php echo $manufacture['name']?>">
                     <label id="manufacture_label_name" for="manufacture_name"></label>
                 </div>
             </div>
             <div class="edit_items-line">
                 <div class="edit_items-line-name">Country</div>
                 <div class="edit_items-line-input">
-                    <select id="manufacture_country">
+                    <select id="manufacture_country" class="uk-select">
                         <?php foreach ($countries as $key => $value): ?>
                             <option value="<?php echo $value['id'] ?>"
                                 <?php echo ($value['id'] == $manufacture['country_id']) ? 'selected' : '' ?>
@@ -56,7 +55,7 @@ include "../header.php";
             </div>
         </div>
         <div class="submit_item">
-            <button id="manufacture_edit_button" manufacture_id="<?php echo $manufacture['id']?>">Save</button>
+            <button id="manufacture_edit_button" class="uk-button uk-button-default" manufacture_id="<?php echo $manufacture['id']?>">Save</button>
         </div>
     </div>
 

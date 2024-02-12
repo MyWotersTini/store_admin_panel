@@ -14,15 +14,24 @@ $args         = array(
 $manufactures = get_manufactures($args);
 ?>
 
+<nav aria-label="Breadcrumb">
+    <ul class="uk-breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/manufacture">Manufactures</a></li>
+    </ul>
+</nav>
 
 <div class="table_edit">
     <div class="table_edit-container uk-container" >
         <div class="table_top_panel"  uk-margin>
             <a class="uk-button uk-button-default add-button" href="/manufacture/add.php">Create new manufacture</a>
-            <form class="uk-search uk-search-default" method="GET">
-                <button class="uk-search-icon-flip" uk-search-icon></button>
-                <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search">
-            </form>
+            <div class="table_top_panel-right">
+                <form class="uk-search uk-search-default" method="GET">
+                    <button class="uk-search-icon-flip" uk-search-icon></button>
+                    <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $_GET['search'] ?>">
+                </form>
+                <a class="uk-button uk-button-default" href="/manufacture">Clear</a>
+            </div>
         </div>
 
         <div class="table_edit-header">

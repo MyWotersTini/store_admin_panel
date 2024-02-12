@@ -17,7 +17,7 @@ $countries = get_countries();
 
     <div class="uk-margin">
         <label class="uk-form-label" for="manufacture_name">Назва компанії</label>
-        <div class="uk-form-controls">
+        <div>
             <input class="uk-input" id="manufacture_name" type="text">
         </div>
         <label id="manufacture_label_name" for="manufacture_name"></label>
@@ -26,7 +26,7 @@ $countries = get_countries();
     <div class="uk-margin">
         <label class="uk-form-label" for="manufacture_country">Країна</label>
         <div class="edit_items-line-input">
-            <select id="manufacture_country">
+            <select class="uk-select" id="manufacture_country">
                 <?php foreach ($countries as $key => $value): ?>
                     <option value="<?php echo $value['id'] ?>">
                     <?php echo $value['name'] ?></option>

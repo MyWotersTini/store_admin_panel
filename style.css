@@ -81,3 +81,27 @@
 #modal_delete_table .uk-modal-title span{
     font-weight: 700;
 }
+
+.form_edit{
+    display: flex;
+    justify-content: center;
+}
+
+.first_text{
+    font-weight: 1000;
+}
+
+#manufacture_country{
+    margin-bottom: 15px;
+}
+
+#category_name{
+    margin-bottom: 15px;
+}
+
+.uk-margin{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+

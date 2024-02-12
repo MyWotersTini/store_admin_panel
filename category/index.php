@@ -8,11 +8,30 @@ if (empty($_SESSION)) {
 
 include "../header.php";
 
-$categories = get_categories();
+$args         = array(
+    'search' => $_GET['search'] ?: '',
+);
+$categories = get_categories($args);
+var_dump($categories);
 ?>
 
+<nav aria-label="Breadcrumb">
+    <ul class="uk-breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/category">Categories</a></li>
+    </ul>
+</nav>
+
 <div class="table_edit">
-    <div class="table_edit-container uk-container" >
+    <div class="table_edit-container uk-container">
+        <div class="table_top_panel"  uk-margin>
+            <a class="uk-button uk-button-default add-button" href="/category/add.php">Create new category</a>
+            <form class="uk-search uk-search-default" method="GET">
+                <button class="uk-search-icon-flip" uk-search-icon></button>
+                <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $_GET['search'] ?>">
+            </form>
+        </div>
+
         <div class="table_edit-header">
             <div class="table_edit-header-item"> Name </div>
             <div class="table_edit-header-item"> Count </div>
@@ -50,10 +69,6 @@ $categories = get_categories();
         </p>
     </div>
 </div>
-
-<p uk-margin>
-    <a class="uk-button uk-button-default add-button" href="/category/add.php">ADD</a>
-</p>
 
 <script src="/js/category.js"></script>
 
