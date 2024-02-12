@@ -11,7 +11,7 @@ include "../header.php";
     </ul>
 </nav>
 
-<form class="uk-form-horizontal uk-margin-large">
+<form class="uk-form-horizontal uk-margin-large form-add">
     <div class="uk-margin">
         <label class="uk-form-label" for="category_name"> Category Name </label>
         <div>

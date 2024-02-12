@@ -1,6 +1,6 @@
 <?php 
 
-function get_categories(){
+function get_categories($args){
     global $connection;
     $sql = "SELECT * FROM (SELECT categories.* , COUNT(title) as count FROM `categories` LEFT JOIN goods ON goods.category = categories.id GROUP BY categories.id) as d";
     if($args['search']){

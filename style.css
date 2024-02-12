@@ -82,9 +82,16 @@
     font-weight: 700;
 }
 
-.form_edit{
+.form-edit{
     display: flex;
     justify-content: center;
+}
+
+.form-add{
+    max-width: 400px;
+    width: 100%;
+    padding: 0 10px;
+    margin: 0 auto;
 }
 
 .first_text{
@@ -95,12 +102,17 @@
     margin-bottom: 15px;
 }
 
+#manufacture_label_name{
+    color: red;
+    font-size: 12px;
+}
+
 #category_name{
     margin-bottom: 15px;
 }
 
-.uk-margin{
-    display: flex;
+.form-add .uk-margin{
+    display: flow;
     justify-content: flex-start;
     flex-direction: row;
 }

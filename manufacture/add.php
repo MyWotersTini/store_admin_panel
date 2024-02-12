@@ -13,7 +13,7 @@ $countries = get_countries();
     </ul>
 </nav>
 
-<form class="uk-form-horizontal uk-margin-large">
+<form class="uk-form-horizontal uk-margin-large form-add">
 
     <div class="uk-margin">
         <label class="uk-form-label" for="manufacture_name">Назва компанії</label>
@@ -36,9 +36,10 @@ $countries = get_countries();
         </div>
     </div>
 
-<p uk-margin>
-    <button class="uk-button uk-button-default" id="manufacture_add_button">ADD</button>
-</p>
+    <p uk-margin>
+        <button class="uk-button uk-button-default" id="manufacture_add_button">ADD</button>
+    </p>
+                </form>
 
 <script src="/js/manufacture.js"></script>
 

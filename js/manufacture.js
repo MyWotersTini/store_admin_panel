@@ -52,6 +52,10 @@ function open_delete_modal(item){
     document.getElementById('manufacture_delete_button').setAttribute('manufacture_id', item.getAttribute('data-id'));
 }
 
+function manufacture_list_location(){
+    location.replace('/manufacture'); 
+}
+
 function add_function(){
     let add_button = document.getElementById('manufacture_add_button');
 
@@ -81,6 +85,7 @@ function add_function(){
                 add_button.removeAttribute("disabled");
             }else{
                 UIkit.notification({message: data['success'], status: 'success'})  
+                setTimeout(manufacture_list_location, 1500); 
             }
 
             add_button.removeAttribute("disabled");
@@ -119,7 +124,8 @@ function edit_func(){
                 }
                 edit_button.removeAttribute("disabled");
             }else{
-                UIkit.notification({message: data['success'], status: 'success'})  
+                UIkit.notification({message: data['success'], status: 'success'}) 
+                setTimeout(manufacture_list_location, 1500);  
             }
 
             edit_button.removeAttribute("disabled");

@@ -73,9 +73,6 @@ function manufacture_add($data){
         $error['success'] = false;
         $error['errors']['country'] = 'Не коректні дані';
     }
-    
-    $sql = "INSERT INTO `manufactures` (`id`, `name`, `country_id`) VALUES (NULL, '" . $data['name'] . "', '" . $data['country'] . "');";
-    mysqli_query($connection, $sql);
 
     if($error['success'] == false){
         //http_response_code(400);
@@ -84,7 +81,8 @@ function manufacture_add($data){
         die;
     }
 
-    
+    $sql = "INSERT INTO `manufactures` (`id`, `name`, `country_id`) VALUES (NULL, '" . $data['name'] . "', '" . $data['country'] . "');";
+    mysqli_query($connection, $sql);
 
     echo json_encode(['success' => 'Дані успішно збережено.']);
 

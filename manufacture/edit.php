@@ -19,18 +19,17 @@ if (empty($manufacture)) {
 
 include "../header.php";
 
+$breadcrump = array(
+
+);
+
+create_breadcrumps($breadcrump);
 ?>
 
-<nav aria-label="Breadcrumb">
-    <ul class="uk-breadcrumb">
-        <li><a href="/">Home</a></li>
-        <li><a href="/manufacture">Manufactures</a></li>
-        <li><a href="#"><?php echo $manufacture['name']?></a></li>
-    </ul>
-</nav>
-<div id="manufacture_form_edit" class="form_edit">
+
+<div id="manufacture_form_edit" class="form-edit">
     <div class="main_edit">
-    <div class="first_text">Editing</div>
+        <div class="first_text">Editing</div>
         <div class="edit_items">
             <div class="edit_items-line">
                 <div class="edit_items-line-name">Name</div>
@@ -58,6 +57,7 @@ include "../header.php";
             <button id="manufacture_edit_button" class="uk-button uk-button-default" manufacture_id="<?php echo $manufacture['id']?>">Save</button>
         </div>
     </div>
+</div>
 
 <script src="/js/manufacture.js"></script>
 

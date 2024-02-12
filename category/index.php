@@ -12,7 +12,7 @@ $args         = array(
     'search' => $_GET['search'] ?: '',
 );
 $categories = get_categories($args);
-var_dump($categories);
+// var_dump($categories);
 ?>
 
 <nav aria-label="Breadcrumb">
@@ -26,10 +26,13 @@ var_dump($categories);
     <div class="table_edit-container uk-container">
         <div class="table_top_panel"  uk-margin>
             <a class="uk-button uk-button-default add-button" href="/category/add.php">Create new category</a>
-            <form class="uk-search uk-search-default" method="GET">
-                <button class="uk-search-icon-flip" uk-search-icon></button>
-                <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $_GET['search'] ?>">
-            </form>
+            <div class="table_top_panel-right">
+                <form class="uk-search uk-search-default" method="GET">
+                    <button class="uk-search-icon-flip" uk-search-icon></button>
+                    <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $_GET['search'] ?>">
+                </form>
+                <a class="uk-button uk-button-default" href="/category">Clear</a>
+            </div> 
         </div>
 
         <div class="table_edit-header">

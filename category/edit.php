@@ -26,7 +26,7 @@ include "../header.php";
     </ul>
 </nav>
 
-<div id="category_form_edit" class="form_edit">
+<div id="category_form_edit" class="form-edit">
     <div class="main_edit">
         <div class="first_text">Edit category</div>
         <div class="edit_items">

@@ -115,6 +115,7 @@ function edit_func(){
                 edit_button.removeAttribute("disabled");
             }else{
                 UIkit.notification({message: data['success'], status: 'success'})  
+                setTimeout(category_list_location, 1500); 
             }
 
             edit_button.removeAttribute("disabled");
