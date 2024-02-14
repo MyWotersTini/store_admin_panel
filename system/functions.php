@@ -26,7 +26,7 @@ function get_input_field($args = []){
             if(!empty($args['format']))
                 echo 'type="' . $args['format'] . '" ';
             
-            if(!empty($args['name'])
+            if(!empty($args['name']))
                 echo 'name="' . $args['name'] . '" ';
             
             if(!empty($args['class']))
@@ -48,13 +48,16 @@ function get_input_field($args = []){
 
 
 function create_breadcrumbs($data = []){
-    //якщо data=пусто то return, інакше має через цикл вивестися всі елементи масиву в классі breadcrumpbs
 ?>
     <nav aria-label="Breadcrumb">
         <ul class="uk-breadcrumb">
             <li><a href="/">Home</a></li>
-            <li><a href="/manufacture">Manufactures</a></li>
-            <li><a href="#"><?php echo $manufacture['name']?></a></li>
+            <?php
+            // Цикл для вывода элементов массива в качестве хлебных крошек
+            foreach ($data as $item) {
+                echo '<li><a href="' . $item['url'] . '">' . $item['name'] . '</a></li>';
+            }
+            ?>
         </ul>
     </nav>
     <?php

@@ -20,10 +20,11 @@ if (empty($manufacture)) {
 include "../header.php";
 
 $breadcrump = array(
-
+    array('name' => 'Manufactures', 'url' => '/manufacture'),
+    array('name' => 'Edit manufacture', 'url' => '')
 );
 
-create_breadcrumps($breadcrump);
+create_breadcrumbs($breadcrump);
 ?>
 
 

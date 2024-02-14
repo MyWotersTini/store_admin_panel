@@ -12,14 +12,13 @@ $args         = array(
     'search' => $_GET['search'] ?: '',
 );
 $manufactures = get_manufactures($args);
-?>
 
-<nav aria-label="Breadcrumb">
-    <ul class="uk-breadcrumb">
-        <li><a href="/">Home</a></li>
-        <li><a href="/manufacture">Manufactures</a></li>
-    </ul>
-</nav>
+$breadcrump = array(
+    array('name' => 'Manufactures', 'url' => '/manufacture'),
+);
+
+create_breadcrumbs($breadcrump);
+?>
 
 <div class="table_edit">
     <div class="table_edit-container uk-container" >

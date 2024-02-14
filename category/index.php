@@ -13,14 +13,12 @@ $args         = array(
 );
 $categories = get_categories($args);
 // var_dump($categories);
-?>
+$breadcrump = array(
+    array('name' => 'Categories', 'url' => '/category'),
+);
 
-<nav aria-label="Breadcrumb">
-    <ul class="uk-breadcrumb">
-        <li><a href="/">Home</a></li>
-        <li><a href="/category">Categories</a></li>
-    </ul>
-</nav>
+create_breadcrumbs($breadcrump);
+?>
 
 <div class="table_edit">
     <div class="table_edit-container uk-container">

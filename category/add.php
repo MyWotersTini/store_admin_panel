@@ -1,15 +1,13 @@
 <?php 
 include_once "../config.php";
 include "../header.php";
-?>
+$breadcrump = array(
+    array('name' => 'Categories', 'url' => '/category'),
+    array('name' => 'Create new category', 'url' => '')
+);
 
-<nav aria-label="Breadcrumb">
-    <ul class="uk-breadcrumb">
-        <li><a href="/">Home</a></li>
-        <li><a href="/category">Categories</a></li>
-        <li><a href="#">Create new category</a></li>
-    </ul>
-</nav>
+create_breadcrumbs($breadcrump);
+?>
 
 <form class="uk-form-horizontal uk-margin-large form-add">
     <div class="uk-margin">
