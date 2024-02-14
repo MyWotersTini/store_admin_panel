@@ -1,12 +1,12 @@
 <?php 
 include_once "../config.php";
 include "../header.php";
-$breadcrump = array(
+$breadcrumb = array(
     array('name' => 'Categories', 'url' => '/category'),
     array('name' => 'Create new category', 'url' => '')
 );
 
-create_breadcrumbs($breadcrump);
+create_breadcrumbs($breadcrumb);
 ?>
 
 <form class="uk-form-horizontal uk-margin-large form-add">

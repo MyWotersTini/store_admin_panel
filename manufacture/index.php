@@ -13,11 +13,11 @@ $args         = array(
 );
 $manufactures = get_manufactures($args);
 
-$breadcrump = array(
+$breadcrumb = array(
     array('name' => 'Manufactures', 'url' => '/manufacture'),
 );
 
-create_breadcrumbs($breadcrump);
+create_breadcrumbs($breadcrumb);
 ?>
 
 <div class="table_edit">

@@ -16,12 +16,12 @@ if (empty($category)) {
 
 include "../header.php";
 
-$breadcrump = array(
+$breadcrumb = array(
     array('name' => 'Categories', 'url' => '/category'),
     array('name' => 'Edit category', 'url' => '')
 );
 
-create_breadcrumbs($breadcrump);
+create_breadcrumbs($breadcrumb);
 ?>
 
 <div id="category_form_edit" class="form-edit">

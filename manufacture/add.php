@@ -4,12 +4,12 @@ include "../header.php";
 
 $countries = get_countries();
 
-$breadcrump = array(
+$breadcrumb = array(
     array('name' => 'Manufactures', 'url' => '/manufacture'),
     array('name' => 'Add manufacture', 'url' => '')
 );
 
-create_breadcrumbs($breadcrump);
+create_breadcrumbs($breadcrumb);
 ?>
 
 <form class="uk-form-horizontal uk-margin-large form-add">

@@ -13,11 +13,11 @@ $args         = array(
 );
 $categories = get_categories($args);
 // var_dump($categories);
-$breadcrump = array(
+$breadcrumb = array(
     array('name' => 'Categories', 'url' => '/category'),
 );
 
-create_breadcrumbs($breadcrump);
+create_breadcrumbs($breadcrumb);
 ?>
 
 <div class="table_edit">

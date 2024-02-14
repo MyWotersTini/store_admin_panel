@@ -53,7 +53,6 @@ function create_breadcrumbs($data = []){
         <ul class="uk-breadcrumb">
             <li><a href="/">Home</a></li>
             <?php
-            // Цикл для вывода элементов массива в качестве хлебных крошек
             foreach ($data as $item) {
                 echo '<li><a href="' . $item['url'] . '">' . $item['name'] . '</a></li>';
             }
