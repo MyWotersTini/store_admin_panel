@@ -11,10 +11,10 @@ include "../header.php";
 $args         = array(
     'search' => $_GET['search'] ?: '',
 );
-$categories = get_categories($args);
-// var_dump($categories);
+$regions = get_regions($args); 
+// var_dump($regions);
 $breadcrumb = array(
-    array('name' => 'Categories', 'url' => '/category'),
+    array('name' => 'Regions', 'url' => '/regions'),
 );
 
 // create_breadcrumbs($breadcrumb);
@@ -24,23 +24,22 @@ $breadcrumb = array(
     <div class="table_edit-container uk-container">
     <?php create_breadcrumbs($breadcrumb); ?>
         <div class="table_top_panel"  uk-margin>
-            <a class="uk-button uk-button-default add-button" href="/category/add.php">Create new category</a>
+            <a class="uk-button uk-button-default add-button" href="/regions/add.php">Create new region</a>
             <div class="table_top_panel-right">
                 <form class="uk-search uk-search-default" method="GET">
                     <button class="uk-search-icon-flip" uk-search-icon></button>
                     <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $_GET['search'] ?>">
                 </form>
-                <a class="uk-button uk-button-default" href="/category">Clear</a>
+                <a class="uk-button uk-button-default" href="/regions">Clear</a>
             </div> 
         </div>
 
         <div class="table_edit-header">
             <div class="table_edit-header-item"> Name </div>
-            <div class="table_edit-header-item"> Count </div>
         </div>
         <div class="table_edit-content">
             
-            <?php foreach($categories as $item){ ?>
+            <?php foreach($regions as $item){ ?>
                 <div class="table_edit-content-item"> 
                     <div class="table_edit-content-item-td"> 
                         <?php echo $item['name'] ?>
@@ -51,11 +50,9 @@ $breadcrumb = array(
                                 href="#modal_delete_table" 
                                 data-name   ="<?php echo $item['name'] ?>" 
                                 data-id     ="<?php echo $item['id'] ?>" 
-                                data-count  ="<?php echo $item['count'] ?>" 
                                 class="red">Trash</a>
                         </div>
                     </div>
-                    <div class="table_edit-content-item-td"> <?php echo $item['count'] ?>  </div>
                 </div>
             <?php } ?>
         </div>
@@ -72,6 +69,6 @@ $breadcrumb = array(
     </div>
 </div>
 
-<script src="/js/category.js"></script>
+<script src="/js/regions.js"></script>
 
 <?php include "../footer.php"; ?>

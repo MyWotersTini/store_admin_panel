@@ -39,6 +39,23 @@ function get_goods(){
     return mysqli_query($connection, $sql);
 }
 
+function get_regions($args){
+    global $connection;
+    $sql = "SELECT * FROM regions";
+    if($args['search']){
+        $sql .= " WHERE regions.name LIKE '%" . $args['search'] . "%'";
+    }
+    // $sql .= " GROUP BY categories.id";
+    // var_dump($sql);
+    return mysqli_query($connection, $sql);
+}
+
+function get_regions_by_id($id){
+    global $connection;
+    $sql = "SELECT * FROM `regions` WHERE id = $id";
+    return mysqli_query($connection, $sql);
+}
+
 function get_countries(){
     global $connection;
     $sql = "SELECT * FROM `countries`";

@@ -17,11 +17,11 @@ $breadcrumb = array(
     array('name' => 'Manufactures', 'url' => '/manufacture'),
 );
 
-create_breadcrumbs($breadcrumb);
 ?>
 
 <div class="table_edit">
     <div class="table_edit-container uk-container" >
+        <?php create_breadcrumbs($breadcrumb); ?>
         <div class="table_top_panel"  uk-margin>
             <a class="uk-button uk-button-default add-button" href="/manufacture/add.php">Create new manufacture</a>
             <div class="table_top_panel-right">

@@ -34,7 +34,19 @@ if (!empty($_POST) and !empty($_POST['action'])) {
         case 'category_delete':
             category_delete($_POST);   
             break;
-             
+
+        case 'regions_edit':
+            category_edit($_POST);
+            break;
+
+        case 'regions_add':
+            category_add($_POST);
+            break;
+        
+        case 'regions_delete':
+            category_delete($_POST);   
+            break; 
+
         default:
             # code...
             break;
@@ -263,4 +275,82 @@ function category_delete($data){
     mysqli_query($connection, $sql);
     echo json_encode(['status' => 'success', 'massage' => $_SESSION["user_id"]]);
     return;
+}
+
+function regions_edit($data){
+
+    $error = [
+        'success' => true
+    ];
+
+    if(empty($data['name'])){
+
+        $error['success'] = false;
+        $error['errors']['name'] = 'Порожне поле';
+    }else if(strlen($data['name']) >= 100){
+        
+        $error['success'] = false;
+        $error['errors']['name'] = 'Завелике поле';
+    }
+
+    if($error['success'] == false){
+        //http_response_code(400);
+        echo json_encode($error);
+
+        die;
+    }
+
+    global $connection;
+
+
+    $sql = "UPDATE `regions` SET `name` = '" . $data['name'] . "' WHERE `regions`.`id` = " . $data['id'];
+    // var_dump($sql);
+    // die;
+    mysqli_query($connection, $sql);
+
+    echo json_encode(['success' => 'Дані успішно збережено.']);
+
+    die;
+}
+
+function regions_add($data){
+    global $connection;
+
+    $error = [
+        'success' => true
+    ];
+
+    if(empty($data['name'])){
+
+        $error['success'] = false;
+        $error['errors']['name'] = 'Порожне поле';
+    }else if(strlen($data['name']) >= 100){
+        
+        $error['success'] = false;
+        $error['errors']['name'] = 'Завелике поле';
+    }else{
+
+        $sql    = "SELECT * FROM `regions` WHERE name='" . $data['name'] . "'";
+        $result = mysqli_query($connection, $sql);
+        
+        if($result->num_rows > 0){
+
+            $error['success'] = false;
+            $error['errors']['name'] = 'Така назва вже є';
+        }
+    }   
+    
+    $sql = "INSERT INTO `regions` (`id`, `name`) VALUES (NULL, '" . $data['name'] . "')";
+    mysqli_query($connection, $sql);
+
+    if($error['success'] == false){
+        //http_response_code(400);
+        echo json_encode($error);
+
+        die;
+    }
+
+    echo json_encode(['success' => 'Дані успішно збережено.']);
+
+    die;
 }
