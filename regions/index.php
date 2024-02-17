@@ -64,7 +64,7 @@ $breadcrumb = array(
         <h2 class="uk-modal-title">Delete Table <span></span>?</h2>
         <p class="uk-text-right">
             <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-            <button id="category_delete_button" class="uk-button uk-button-primary" type="button">Delete</button>
+            <button id="regions_delete_button" class="uk-button uk-button-primary" type="button">Delete</button>
         </p>
     </div>
 </div>

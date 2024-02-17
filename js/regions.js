@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded", (event) => {
 
     let edit_button = document.getElementById('regions_edit_button');
-    let category_delete_button = document.getElementById('category_delete_button');
+    let category_delete_button = document.getElementById('regions_delete_button');
     let delete_button = document.querySelectorAll('a[href="#modal_delete_table"]');
     let add_button = document.getElementById('regions_add_button');
 
@@ -23,31 +23,31 @@ window.addEventListener("DOMContentLoaded", (event) => {
     
 });
 
-// function delete_category() {
-//     let category_delete_button = document.getElementById('category_delete_button');
-//     let category_id = category_delete_button.getAttribute('category_id');
-//     $.ajax({
-//         url: '/system/server.php',
-//         type: 'POST',
-//         data: {
-//             'action' : 'category_delete',
-//             'id' : category_id 
-//         },
-//         success: function( response ) {
+function delete_category() {
+    let regions_delete_button = document.getElementById('regions_delete_button');
+    let regions_id = regions_delete_button.getAttribute('regions_id');
+    $.ajax({
+        url: '/system/server.php',
+        type: 'POST',
+        data: {
+            'action' : 'regions_delete',
+            'id' : regions_id 
+        },
+        success: function( response ) {
 
-//             location.reload();
-//         }
-//     }); 
-// }
+            location.reload();
+        }
+    }); 
+}
 
-// function open_delete_modal(item){
-//     UIkit.modal('#modal_delete_table').show();
+function open_delete_modal(item){
+    UIkit.modal('#modal_delete_table').show();
 
-//     document.querySelector('#modal_delete_table .uk-modal-title span').innerHTML = 
-//     item.getAttribute('data-name');
+    document.querySelector('#modal_delete_table .uk-modal-title span').innerHTML = 
+    item.getAttribute('data-name');
 
-//     document.getElementById('category_delete_button').setAttribute('category_id', item.getAttribute('data-id'));
-// }
+    document.getElementById('regions_delete_button').setAttribute('regions_id', item.getAttribute('data-id'));
+}
 
 function regions_list_location(){
     location.replace('/regions'); 

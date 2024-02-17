@@ -36,15 +36,15 @@ if (!empty($_POST) and !empty($_POST['action'])) {
             break;
 
         case 'regions_edit':
-            category_edit($_POST);
+            regions_edit($_POST);
             break;
 
         case 'regions_add':
-            category_add($_POST);
+            regions_add($_POST);
             break;
         
         case 'regions_delete':
-            category_delete($_POST);   
+            regions_delete($_POST);   
             break; 
 
         default:
@@ -353,4 +353,12 @@ function regions_add($data){
     echo json_encode(['success' => 'Дані успішно збережено.']);
 
     die;
+}
+
+function regions_delete($data){
+    global $connection;
+    $sql = "DELETE FROM `regions` WHERE `regions`.`id` = " . $data['id'];
+    mysqli_query($connection, $sql);
+    echo json_encode(['status' => 'success', 'massage' => $_SESSION["user_id"]]);
+    return;
 }
