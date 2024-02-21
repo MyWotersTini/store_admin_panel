@@ -85,6 +85,7 @@
 .form-edit{
     display: flex;
     justify-content: center;
+
 }
 
 .form-add{
@@ -109,6 +110,11 @@
 
 #category_name{
     margin-bottom: 15px;
+}
+
+.main_edit{
+    max-width: 400px;
+    width: 100%;
 }
 
 .form-add .uk-margin{
