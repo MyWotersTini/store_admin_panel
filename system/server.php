@@ -47,6 +47,18 @@ if (!empty($_POST) and !empty($_POST['action'])) {
             regions_delete($_POST);   
             break; 
 
+        case 'districts_edit':
+            districts_edit($_POST);
+            break;
+
+        case 'districts_add':
+            districts_add($_POST);
+            break;
+        
+        case 'districts_delete':
+            districts_delete($_POST);   
+            break;
+
         default:
             # code...
             break;
@@ -358,6 +370,100 @@ function regions_add($data){
 function regions_delete($data){
     global $connection;
     $sql = "DELETE FROM `regions` WHERE `regions`.`id` = " . $data['id'];
+    mysqli_query($connection, $sql);
+    echo json_encode(['status' => 'success', 'massage' => $_SESSION["user_id"]]);
+    return;
+}
+
+function districts_add($data){
+    global $connection;
+
+    $error = [
+        'success' => true
+    ];
+
+    if(empty($data['name'])){
+
+        $error['success'] = false;
+        $error['errors']['name'] = 'Порожне поле';
+    }else if(strlen($data['name']) >= 100){
+        
+        $error['success'] = false;
+        $error['errors']['name'] = 'Завелике поле';
+    }else{
+
+        $sql    = "SELECT * FROM `districts` WHERE name='" . $data['name'] . "'";
+        $result = mysqli_query($connection, $sql);
+        
+        if($result->num_rows > 0){
+
+            $error['success'] = false;
+            $error['errors']['name'] = 'Така назва вже є';
+        }
+    }
+    
+    if(empty($data['region'])){
+
+        $error['success'] = false;
+        $error['errors']['region'] = 'Не коректні дані';
+    }
+
+    if($error['success'] == false){
+        //http_response_code(400);
+        echo json_encode($error);
+
+        die;
+    }
+
+    $sql = "INSERT INTO `districts` (`id`, `name`, `region_id`) VALUES (NULL, '" . $data['name'] . "', '" . $data['region'] . "');";
+    mysqli_query($connection, $sql);
+
+    echo json_encode(['success' => 'Дані успішно збережено.']);
+
+    die;
+    
+    //перевірити що передані значення не пусті. якщо пусті то повернути json error, інакше зберегти данні повернути json succes
+}
+
+function districts_edit($data){
+
+    $error = [
+        'success' => true
+    ];
+
+    if(empty($data['name'])){
+
+        $error['success'] = false;
+        $error['errors']['name'] = 'Порожне поле';
+    }else if(strlen($data['name']) >= 100){
+        
+        $error['success'] = false;
+        $error['errors']['name'] = 'Завелике поле';
+    }
+
+    if($error['success'] == false){
+        //http_response_code(400);
+        echo json_encode($error);
+
+        die;
+    }
+
+    global $connection;
+
+
+    $sql = "UPDATE `districts` SET `name` = '" . $data['name'] . "' WHERE `districts`.`id` = " . $data['id'];
+    // var_dump($sql);
+    // die;
+    mysqli_query($connection, $sql);
+
+    echo json_encode(['success' => 'Дані успішно збережено.']);
+
+    die;
+}
+
+function districts_delete($data){
+    global $connection;
+    $sql = "DELETE FROM `districts` WHERE `districts`.`id` = " . $data['id'];
     mysqli_query($connection, $sql);
     echo json_encode(['status' => 'success', 'massage' => $_SESSION["user_id"]]);
     return;

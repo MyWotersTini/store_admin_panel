@@ -50,6 +50,22 @@ function get_regions($args){
     return mysqli_query($connection, $sql);
 }
 
+function get_districts($args){
+    global $connection;
+    $sql = "SELECT * FROM (SELECT districts.*, regions.name as regions FROM `districts` LEFT JOIN `regions` ON region_id = regions.id GROUP BY districts.id) as d";
+    if($args['search']){
+        $sql .= " WHERE d.name LIKE '%" . $args['search'] . "%' OR d.regions LIKE '%" . $args['search'] . "%';";
+    }
+    // var_dump($sql);
+    return mysqli_query($connection, $sql);
+}
+
+function get_districts_by_id($id){
+    global $connection;
+    $sql = "SELECT * FROM `districts` WHERE id = $id";
+    return mysqli_query($connection, $sql);
+}
+
 function get_regions_by_id($id){
     global $connection;
     $sql = "SELECT * FROM `regions` WHERE id = $id";
@@ -92,9 +108,5 @@ function get_сontracts(){
     return mysqli_query($connection, $sql);
 }
 
-function get_districts(){
-    global $connection;
-    $sql = "SELECT districts.*, regions.name FROM `districts`, `regions` WHERE region_id = regions.id";
-    return mysqli_query($connection, $sql);
-}
+
 
