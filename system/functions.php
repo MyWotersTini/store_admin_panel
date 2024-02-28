@@ -76,9 +76,28 @@ function pagination($data){
             </li>
             <?php
         }
+        $flag_pagination = 0;
         while($i <= $page_count){
-            if($i == 1 || $i == $page_count){
-                echo "<li><a href=''>$i</a></li>";
+            if(
+                $i == 1 || 
+                $i == $page_count || 
+                $i == $data['page'] ||
+                $i+1 == $data['page'] ||
+                $i+2 == $data['page'] ||
+                $i+3 == $data['page'] ||
+                $i-1 == $data['page'] ||
+                $i-2 == $data['page'] ||
+                $i-3 == $data['page'] 
+            ){
+                echo "<li " . (($i == $data['page']) ?
+                "class='uk-active'" : '') . "><a href='?page=$i'>$i</a></li>";
+                $flag_pagination = 0;
+            }
+            else{
+                if($flag_pagination == 0){
+                ?> <li class="uk-disabled"><span>…</span></li> <?php
+                }
+                $flag_pagination = 1;
             }
             $i++;
         }
@@ -86,7 +105,7 @@ function pagination($data){
             ?> 
             <li>
                 <a href='?page=<?php echo $data['page'] + 1 ?>'>
-                    <span uk-pagination-previous></span>
+                    <span uk-pagination-next></span>
                 </a>
             </li>
             <?php

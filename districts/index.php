@@ -14,7 +14,7 @@ $args         = array(
     'page'   => $_GET['page'] ?? '1'
 );
 $districts          = get_districts($args);
-$args['count']      = get_districts_count();
+$args['count']      = get_districts_count($args);
 
 $breadcrumb = array(
     array('name' => 'Districts', 'url' => '/districts'),

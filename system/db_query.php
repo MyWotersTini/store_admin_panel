@@ -85,9 +85,12 @@ function get_districts_by_id($id){
     return mysqli_query($connection, $sql);
 }
 
-function get_districts_count(){
+function get_districts_count($args){
     global $connection;
-    $sql = "SELECT COUNT(*) as count FROM districts;";
+    $sql = "SELECT COUNT(*) as count FROM (SELECT districts.*, regions.name as regions FROM `districts` LEFT JOIN `regions` ON region_id = regions.id GROUP BY districts.id) as d";
+    if($args['search']){
+        $sql .= " WHERE d.name LIKE '%" . $args['search'] . "%' OR d.regions LIKE '%" . $args['search'] . "%'";
+    }
     $result = mysqli_fetch_assoc(mysqli_query($connection, $sql));
     return $result['count'];
 }
