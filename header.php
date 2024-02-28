@@ -34,6 +34,7 @@
             <li><a href="/category"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Categories</a></li>
             <li><a href="/regions"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Regions</a></li>
             <li><a href="/districts"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Districts</a></li>
+            <li><a href="/cities"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> cities</a></li>
             <li class="uk-nav-divider"></li>
             <li><a id="logout" href="#"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> Logout</a></li>
         </ul>
