@@ -9,13 +9,13 @@ if (empty($_SESSION)) {
 include "../header.php";
 
 $args         = array(
-    'search' => $_GET['search'] ?: '',
+    'search' => $_GET['search'] ?? '',
     'limit'  => 10,
-    'page'   => $_GET['page'] ?: '1'
+    'page'   => $_GET['page'] ?? '1'
 );
-$districts = get_districts($args);
-$districts_count = get_districts_count();
-var_dump(ceil($districts_count/$args['limit']));
+$districts          = get_districts($args);
+$args['count']      = get_districts_count();
+
 $breadcrumb = array(
     array('name' => 'Districts', 'url' => '/districts'),
 );
@@ -31,7 +31,7 @@ $breadcrumb = array(
             <div class="table_top_panel-right">
                 <form class="uk-search uk-search-default" method="GET">
                     <button class="uk-search-icon-flip" uk-search-icon></button>
-                    <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $_GET['search'] ?>">
+                    <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $args['search'] ?>">
                 </form>
                 <a class="uk-button uk-button-default" href="/districts">Clear</a>
             </div> 
@@ -61,6 +61,8 @@ $breadcrumb = array(
                     <div class="table_edit-content-item-td"> <?php echo $item['regions'] ?>  </div>
                 </div>
             <?php } ?>
+
+            <?php pagination($args); ?>
         </div>
     </div>
 </div>

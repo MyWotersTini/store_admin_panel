@@ -62,4 +62,35 @@ function create_breadcrumbs($data = []){
     <?php
 }
 
+function pagination($data){
+    $page_count = ceil($data['count']/$data['limit']);
+
+    $i = 1;
+    ?> <ul class="uk-pagination" uk-margin> <?php
+        if($data['page'] != 1){
+            ?>
+            <li>
+                <a href='?page=<?php echo $data['page'] - 1 ?>'>
+                    <span uk-pagination-previous></span>
+                </a>
+            </li>
+            <?php
+        }
+        while($i <= $page_count){
+            if($i == 1 || $i == $page_count){
+                echo "<li><a href=''>$i</a></li>";
+            }
+            $i++;
+        }
+        if($data['page'] != $page_count){
+            ?> 
+            <li>
+                <a href='?page=<?php echo $data['page'] + 1 ?>'>
+                    <span uk-pagination-previous></span>
+                </a>
+            </li>
+            <?php
+        }
+    ?> </ul> <?php
+}
 ?>
