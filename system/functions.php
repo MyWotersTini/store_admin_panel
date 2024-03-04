@@ -66,11 +66,11 @@ function pagination($data){
     $page_count = ceil($data['count']/$data['limit']);
 
     $i = 1;
-    ?> <ul class="uk-pagination" uk-margin> <?php
+    ?> <ul class="uk-pagination pagination" uk-margin> <?php
         if($data['page'] != 1){
             ?>
             <li>
-                <a href='?page=<?php echo $data['page'] - 1 ?>'>
+                <a href='?page=<?php echo $data['page'] - 1 ?>&search=<?php echo $data['search'] ?>'>
                     <span uk-pagination-previous></span>
                 </a>
             </li>
@@ -90,7 +90,8 @@ function pagination($data){
                 $i-3 == $data['page'] 
             ){
                 echo "<li " . (($i == $data['page']) ?
-                "class='uk-active'" : '') . "><a href='?page=$i'>$i</a></li>";
+                    "class='uk-active'" : '') . "><a href='?page=$i&search=" . urlencode($data['search']) . "'>$i</a></li>";
+                // "class='uk-active'" : '') . "><a href='?page=$i'>$i</a></li>";
                 $flag_pagination = 0;
             }
             else{
@@ -104,7 +105,7 @@ function pagination($data){
         if($data['page'] != $page_count){
             ?> 
             <li>
-                <a href='?page=<?php echo $data['page'] + 1 ?>'>
+                    <a href='?page=<?php echo $data['page'] + 1 ?>&search=<?php echo $data['search'] ?>'>
                     <span uk-pagination-next></span>
                 </a>
             </li>

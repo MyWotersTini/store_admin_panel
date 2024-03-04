@@ -123,3 +123,7 @@
     flex-direction: row;
 }
 
+.pagination{
+    display:flex;
+    justify-content: center;
+}

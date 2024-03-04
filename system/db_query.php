@@ -65,7 +65,7 @@ function get_districts($args){
 
 function get_cities($args){
     global $connection;
-    $sql = "SELECT cities.*, districts.name as district FROM `cities` LEFT JOIN `districts` ON district_id = districts.id GROUP BY cities.id";
+    $sql = "SELECT * FROM (SELECT cities.*, districts.name as district FROM `cities` LEFT JOIN `districts` ON district_id = districts.id GROUP BY cities.id) as d";
     if($args['search']){
         $sql .= " WHERE d.type LIKE '%" . $args['search'] . "%' OR d.district LIKE '%" . $args['search'] . "%'";
     }
@@ -88,6 +88,16 @@ function get_districts_by_id($id){
 function get_districts_count($args){
     global $connection;
     $sql = "SELECT COUNT(*) as count FROM (SELECT districts.*, regions.name as regions FROM `districts` LEFT JOIN `regions` ON region_id = regions.id GROUP BY districts.id) as d";
+    if($args['search']){
+        $sql .= " WHERE d.name LIKE '%" . $args['search'] . "%' OR d.regions LIKE '%" . $args['search'] . "%'";
+    }
+    $result = mysqli_fetch_assoc(mysqli_query($connection, $sql));
+    return $result['count'];
+}
+
+function get_cities_count($args){
+    global $connection;
+    $sql = "SELECT COUNT(*) as count FROM (SELECT cities.*, districts.name as district FROM `cities` LEFT JOIN `districts` ON district_id = districts.id GROUP BY cities.id) as d";
     if($args['search']){
         $sql .= " WHERE d.name LIKE '%" . $args['search'] . "%' OR d.regions LIKE '%" . $args['search'] . "%'";
     }

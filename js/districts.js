@@ -4,6 +4,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let districts_delete_button = document.getElementById('districts_delete_button');
     let delete_button = document.querySelectorAll('a[href="#modal_delete_table"]');
     let add_button = document.getElementById('districts_add_button');
+    
 
     if(delete_button)
         delete_button.forEach((item) => {
