@@ -68,6 +68,9 @@ function get_cities($args){
     $sql = "SELECT * FROM (SELECT cities.*, districts.name as district FROM `cities` LEFT JOIN `districts` ON district_id = districts.id GROUP BY cities.id) as d";
     if($args['search']){
         $sql .= " WHERE d.title LIKE '%" . $args['search'] . "%' OR d.district LIKE '%" . $args['search'] . "%' OR d.type LIKE '%" . $args['search'] . "%'";
+    }  
+    if($args['orderby']){
+        $sql .= " ORDER BY  " . $args['orderby'] . " " . $args['ordertype'];
     }
     if($args['page']){
         $sql .= " LIMIT " . (($args['page'] - 1) * $args['limit']) . "," . $args['limit'];

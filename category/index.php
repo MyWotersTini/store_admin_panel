@@ -9,7 +9,7 @@ if (empty($_SESSION)) {
 include "../header.php";
 
 $args         = array(
-    'search' => $_GET['search'] ?: '',
+    'search' => $_GET['search'] ?? '',
 );
 $categories = get_categories($args);
 // var_dump($categories);
@@ -28,7 +28,7 @@ $breadcrumb = array(
             <div class="table_top_panel-right">
                 <form class="uk-search uk-search-default" method="GET">
                     <button class="uk-search-icon-flip" uk-search-icon></button>
-                    <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $_GET['search'] ?>">
+                    <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $args['search'] ?>">
                 </form>
                 <a class="uk-button uk-button-default" href="/category">Clear</a>
             </div> 

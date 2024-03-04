@@ -62,6 +62,29 @@ function create_breadcrumbs($data = []){
     <?php
 }
 
+function limitList ($data){
+    $limit_arr = array(
+      10,
+      15,
+      25,
+      50,
+      100  
+    );
+    ?>
+    <!-- <div class="limit_bar"> -->
+        <button class="uk-button uk-button-default" type="button"><?php echo $data['limit']; ?></button>
+        <div uk-dropdown>
+            <ul class="uk-nav uk-dropdown-nav">
+                <?php foreach($limit_arr as $lim): ?>
+                <li><a href="?limit=<?php echo $lim; ?>"><?php echo $lim; ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <!-- </div> -->
+
+    <?php
+}
+
 function pagination($data){
     $page_count = ceil($data['count']/$data['limit']);
 

@@ -9,9 +9,11 @@ if (empty($_SESSION)) {
 include "../header.php";
 
 $args         = array(
-    'search' => $_GET['search'] ?? '',
-    'limit'  => 10,
-    'page'   => $_GET['page'] ?? '1',
+    'search'    => $_GET['search']     ?? '',
+    'limit'     => $_GET['limit']      ?? 10,
+    'orderby'   => $_GET ['orderby']   ?? '',
+    'ordertype' => (!empty($_GET ['ordertype']) && $_GET['ordertype'] == 'DESC') ? 'DESC' : 'ASC',
+    'page'      => $_GET['page']       ?? '1',
 );
 $cities             = get_cities($args);
 $args['count']      = get_cities_count($args);
@@ -28,6 +30,7 @@ $breadcrumb = array(
         <div class="table_top_panel"  uk-margin>
             <a class="uk-button uk-button-default add-button" href="/cities/add.php">Create new cities</a>
             <div class="table_top_panel-right">
+                <?php limitList($args); ?>
                 <form class="uk-search uk-search-default" method="GET">
                     <button class="uk-search-icon-flip" uk-search-icon></button>
                     <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $args['search'] ?>">
@@ -37,9 +40,15 @@ $breadcrumb = array(
         </div>
 
         <div class="table_edit-header">
-            <div class="table_edit-header-item"> Type </div>
-            <div class="table_edit-header-item"> District </div>
-            <div class="table_edit-header-item"> title </div>
+            <div class="table_edit-header-item">
+                <?php if($args['orderby'] == 'type' && $args['ordertype'] != 'DESC'): ?>    
+            <a href="?orderby=type&ordertype=DESC"> Type </a>
+                <?php else: ?>
+                    <a href="?orderby=type"> Type </a>
+                <?php endif; ?>
+            </div>
+            <div class="table_edit-header-item"><a href="?orderby=district"> District </a></div>
+            <div class="table_edit-header-item"><a href="?orderby=title"> Title </a></div>
         </div>
         <div class="table_edit-content">
             
