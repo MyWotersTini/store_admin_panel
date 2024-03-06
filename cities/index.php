@@ -34,6 +34,7 @@ $breadcrumb = array(
                 <form class="uk-search uk-search-default" method="GET">
                     <button class="uk-search-icon-flip" uk-search-icon></button>
                     <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $args['search'] ?>">
+                    <input type="hidden" name="limit" value="<?php echo $args['limit'] ?>">
                 </form>
                 <a class="uk-button uk-button-default" href="/cities">Clear</a>
             </div>

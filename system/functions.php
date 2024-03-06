@@ -76,7 +76,10 @@ function limitList ($data){
         <div uk-dropdown>
             <ul class="uk-nav uk-dropdown-nav">
                 <?php foreach($limit_arr as $lim): ?>
-                <li><a href="?limit=<?php echo $lim; ?>"><?php echo $lim; ?></a></li>
+                    <li>
+                        <a href="?limit=<?php echo $lim; ?>&search=<?php echo urlencode($data['search']); ?>">
+                        <?php echo $lim; ?></a>
+                    </li>
                 <?php endforeach; ?>
             </ul>
         </div>
@@ -89,11 +92,12 @@ function pagination($data){
     $page_count = ceil($data['count']/$data['limit']);
 
     $i = 1;
-    ?> <ul class="uk-pagination pagination" uk-margin> <?php
+    ?> 
+    <ul class="uk-pagination pagination" uk-margin> <?php
         if($data['page'] != 1){
             ?>
             <li>
-                <a href='?page=<?php echo $data['page'] - 1 ?>&search=<?php echo $data['search'] ?>'>
+                    <a href='?page=<?php echo $data['page'] - 1 ?>&limit=<?php echo $data['limit']; ?>&search=<?php echo urlencode($data['search']); ?>'>
                     <span uk-pagination-previous></span>
                 </a>
             </li>
@@ -111,9 +115,10 @@ function pagination($data){
                 $i-1 == $data['page'] ||
                 $i-2 == $data['page'] ||
                 $i-3 == $data['page'] 
+
             ){
                 echo "<li " . (($i == $data['page']) ?
-                    "class='uk-active'" : '') . "><a href='?page=$i&search=" . urlencode($data['search']) . "'>$i</a></li>";
+                    "class='uk-active'" : '') . "><a href='?page=$i&limit=" . $data['limit'] . "&search=" . urlencode($data['search']) . "'>$i</a></li>";
                 // "class='uk-active'" : '') . "><a href='?page=$i'>$i</a></li>";
                 $flag_pagination = 0;
             }
@@ -128,7 +133,7 @@ function pagination($data){
         if($data['page'] != $page_count){
             ?> 
             <li>
-                    <a href='?page=<?php echo $data['page'] + 1 ?>&search=<?php echo $data['search'] ?>'>
+                    <a href='?page=<?php echo $data['page'] + 1 ?>&limit=<?php echo $data['limit']; ?>&search=<?php echo urlencode($data['search']); ?>'>
                     <span uk-pagination-next></span>
                 </a>
             </li>
