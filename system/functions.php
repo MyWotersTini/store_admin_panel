@@ -47,7 +47,7 @@ function get_input_field($args = []){
 }
 
 
-function create_breadcrumbs($data = []){
+function createBreadcrumbs($data = []){
 ?>
     <nav aria-label="Breadcrumb">
         <ul class="uk-breadcrumb">
@@ -140,5 +140,21 @@ function pagination($data){
             <?php
         }
     ?> </ul> <?php
+}
+
+function urlGenerator($data, $item, $new_data, $show_array){
+    // перше $data 
+    // друге елемент який треба замінити
+    // значення елемента який треба замінити
+    // які елементи включити до генераціі лінки
+
+    // 1. Якщо ми змінюємо ліміт то викликається ця функція з наступнимим параметрами ($data, 'limit', 25, ['search','limit','orderby','ordertype'])
+    // Відповідно всі значення беруться з data, а лише limit замінюється на нове значення при цьому page не виводиться так як його немає в останньому масиві
+
+    // 2. pagination. ($data, 'page', 2, ['search','limit','orderby','ordertype','page']) виводимо все й замінюємо page
+
+    // 3. orderby ($data, 'orderby', 'type', ['search','limit','orderby']) // ?search=Ва&limit=15&orderby=type
+
+    // 4. ordertype ($data, 'ordertype', 'DESC', ['search','limit','orderby','ordertype']) ?search=Ва&limit-15&orderby=type&ordertype=DESC
 }
 ?>

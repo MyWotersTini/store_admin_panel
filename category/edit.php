@@ -21,7 +21,7 @@ $breadcrumb = array(
     array('name' => 'Edit category', 'url' => '')
 );
 
-create_breadcrumbs($breadcrumb);
+createBreadcrumbs($breadcrumb);
 ?>
 
 <div id="category_form_edit" class="form-edit">

@@ -6,7 +6,7 @@ $breadcrumb = array(
     array('name' => 'Create new category', 'url' => '')
 );
 
-create_breadcrumbs($breadcrumb);
+createBreadcrumbs($breadcrumb);
 ?>
 
 <form class="uk-form-horizontal uk-margin-large form-add">

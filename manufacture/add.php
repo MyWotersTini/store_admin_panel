@@ -9,7 +9,7 @@ $breadcrumb = array(
     array('name' => 'Add manufacture', 'url' => '')
 );
 
-create_breadcrumbs($breadcrumb);
+createBreadcrumbs($breadcrumb);
 ?>
 
 <form class="uk-form-horizontal uk-margin-large form-add">

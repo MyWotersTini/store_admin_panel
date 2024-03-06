@@ -30,7 +30,7 @@ $breadcrumb = array(
     ]
 );
 
-create_breadcrumbs($breadcrumb);
+createBreadcrumbs($breadcrumb);
 ?>
 
 

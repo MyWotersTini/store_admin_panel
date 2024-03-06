@@ -26,7 +26,7 @@ $breadcrumb = array(
 
 <div class="table_edit">
     <div class="table_edit-container uk-container" >
-        <?php create_breadcrumbs($breadcrumb); ?>
+        <?php createBreadcrumbs($breadcrumb); ?>
         <div class="table_top_panel"  uk-margin>
             <a class="uk-button uk-button-default add-button" href="/cities/add.php">Create new cities</a>
             <div class="table_top_panel-right">

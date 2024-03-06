@@ -21,7 +21,7 @@ $breadcrumb = array(
     array('name' => 'Edit regions', 'url' => '')
 );
 
-create_breadcrumbs($breadcrumb);
+createBreadcrumbs($breadcrumb);
 ?>
 
 <div id="regions_form_edit" class="form-edit">

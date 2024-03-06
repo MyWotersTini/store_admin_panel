@@ -20,12 +20,12 @@ $breadcrumb = array(
     array('name' => 'Districts', 'url' => '/districts'),
 );
 
-// create_breadcrumbs($breadcrumb);
+// createBreadcrumbs($breadcrumb);
 ?>
 
 <div class="table_edit">
     <div class="table_edit-container uk-container">
-    <?php create_breadcrumbs($breadcrumb); ?>
+    <?php createBreadcrumbs($breadcrumb); ?>
         <div class="table_top_panel"  uk-margin>
             <a class="uk-button uk-button-default add-button" href="/districts/add.php">Create new district</a>
             <div class="table_top_panel-right">
