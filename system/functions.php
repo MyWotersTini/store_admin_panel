@@ -97,7 +97,7 @@ function pagination($data){
         if($data['page'] != 1){
             ?>
             <li>
-                    <a href='?page=<?php echo $data['page'] - 1 ?>&limit=<?php echo $data['limit']; ?>&search=<?php echo urlencode($data['search']); ?>'>
+                    <a href='<?php echo urlGenerator($data, 'page', $data['page'] - 1, ['search','limit','orderby','ordertype','page']) ?>'>
                     <span uk-pagination-previous></span>
                 </a>
             </li>
@@ -118,7 +118,7 @@ function pagination($data){
 
             ){
                 echo "<li " . (($i == $data['page']) ?
-                    "class='uk-active'" : '') . "><a href='?page=$i&limit=" . $data['limit'] . "&search=" . urlencode($data['search']) . "'>$i</a></li>";
+                    "class='uk-active'" : '') . "><a href='" . urlGenerator($data, 'page', $i, ['search','limit','orderby','ordertype','page']) . "'>$i</a></li>";
                 // "class='uk-active'" : '') . "><a href='?page=$i'>$i</a></li>";
                 $flag_pagination = 0;
             }
@@ -133,7 +133,7 @@ function pagination($data){
         if($data['page'] != $page_count){
             ?> 
             <li>
-                    <a href='?page=<?php echo $data['page'] + 1 ?>&limit=<?php echo $data['limit']; ?>&search=<?php echo urlencode($data['search']); ?>'>
+                    <a href='<?php echo urlGenerator($data, 'page', $data['page'] +  1, ['search','limit','orderby','ordertype','page']) ?>'>
                     <span uk-pagination-next></span>
                 </a>
             </li>
@@ -151,6 +151,7 @@ function urlGenerator($data, $item, $new_data, $show_array){
         $modifiedData[$item] = $new_data;
     }
 
+
     $queryParams = [];
 
     foreach ($show_array as $element) {
@@ -158,6 +159,7 @@ function urlGenerator($data, $item, $new_data, $show_array){
             $queryParams[$element] = $modifiedData[$element];
         }
     }
+
 
     $url = '?' . http_build_query($queryParams);
 

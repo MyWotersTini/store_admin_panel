@@ -22,9 +22,9 @@ $args['count']      = get_cities_count($args);
 $new_limit = $args['limit']; 
 $show_array = ['search', 'limit', 'orderby', 'ordertype']; 
 
-$newUrl = urlGenerator($args, 'limit', $new_limit, $show_array);
+// $newUrl = urlGenerator($args, 'limit', $new_limit, $show_array);
 
-echo $newUrl;
+// echo $newUrl;
 
 
 $breadcrumb = array(
