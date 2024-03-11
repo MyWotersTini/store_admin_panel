@@ -143,6 +143,27 @@ function pagination($data){
 }
 
 function urlGenerator($data, $item, $new_data, $show_array){
+    $modifiedData = $data;
+
+    if (array_key_exists($item, $modifiedData)) {
+        $modifiedData[$item] = $new_data;
+    } else {
+        $modifiedData[$item] = $new_data;
+    }
+
+    $queryParams = [];
+
+    foreach ($show_array as $element) {
+        if (array_key_exists($element, $modifiedData)) {
+            $queryParams[$element] = $modifiedData[$element];
+        }
+    }
+
+    $url = '?' . http_build_query($queryParams);
+
+    return $url;
+    
+    
     // перше $data 
     // друге елемент який треба замінити
     // значення елемента який треба замінити
