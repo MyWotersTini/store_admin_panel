@@ -72,7 +72,7 @@ function get_districts($args){
     if($args['search']){
         $sql .= " WHERE d.name LIKE '%" . $args['search'] . "%' OR d.regions LIKE '%" . $args['search'] . "%'";
     }
-    if($args['orderby']){
+    if(!empty($args['orderby'])){
         $sql .= " ORDER BY  " . $args['orderby'] . " " . $args['ordertype'];
     }
     if($args['page']){

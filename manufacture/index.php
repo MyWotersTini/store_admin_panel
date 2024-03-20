@@ -51,7 +51,7 @@ $breadcrumb = array(
                 <?php if($args['orderby'] == 'name' && $args['ordertype'] != 'DESC'): ?>    
                     <a href="?orderby=name&ordertype=DESC"> Name </a>
                 <?php else: ?>
-                    <a href="?orderby=nae"> Name </a>
+                    <a href="?orderby=name"> Name </a>
                 <?php endif; ?>
             </div>
 

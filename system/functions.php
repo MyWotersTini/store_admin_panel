@@ -77,7 +77,7 @@ function limitList ($data){
             <ul class="uk-nav uk-dropdown-nav">
                 <?php foreach($limit_arr as $lim): ?>
                     <li>
-                        <a href="?limit=<?php echo $lim; ?>&search=<?php echo urlencode($data['search']); ?>">
+                        <a href="<?php echo urlGenerator($data, 'limit', $lim, ['search','limit','orderby','ordertype']) ?>">
                         <?php echo $lim; ?></a>
                     </li>
                 <?php endforeach; ?>
@@ -144,7 +144,7 @@ function pagination($data){
 
 function urlGenerator($data, $item, $new_data, $show_array){
     $modifiedData = $data;
-
+    // var_dump($modifiedData);
     if (array_key_exists($item, $modifiedData)) {
         $modifiedData[$item] = $new_data;
     } else {

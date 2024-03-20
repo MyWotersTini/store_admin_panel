@@ -19,14 +19,6 @@ $args         = array(
 $cities             = get_cities($args);
 $args['count']      = get_cities_count($args);
 
-$new_limit = $args['limit']; 
-$show_array = ['search', 'limit', 'orderby', 'ordertype']; 
-
-// $newUrl = urlGenerator($args, 'limit', $new_limit, $show_array);
-
-// echo $newUrl;
-
-
 $breadcrumb = array(
     array('name' => 'Cities', 'url' => '/cities'),
 );
@@ -52,25 +44,25 @@ $breadcrumb = array(
         <div class="table_edit-header">
             <div class="table_edit-header-item">
                 <?php if($args['orderby'] == 'type' && $args['ordertype'] != 'DESC'): ?>    
-                    <a href="?orderby=type&ordertype=DESC"> Type </a>
+                    <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Type </a>
                 <?php else: ?>
-                    <a href="?orderby=type"> Type </a>
+                    <a href="<?php echo urlGenerator($args, 'orderby','type', ['search','limit','orderby']) ?>"> Type </a>
                 <?php endif; ?>
             </div>
 
             <div class="table_edit-header-item">
                 <?php if($args['orderby'] == 'district' && $args['ordertype'] != 'DESC'): ?> 
-            <a href="?orderby=district&ordertype=DESC"> District </a>
+                    <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> District </a>
                 <?php else: ?>
-                    <a href="?orderby=district"> District </a>
+                    <a href="<?php echo urlGenerator($args, 'orderby','district', ['search','limit','orderby']) ?>"> District </a>
                 <?php endif; ?>
             </div>
 
             <div class="table_edit-header-item">
                 <?php if($args['orderby'] == 'title' && $args['ordertype'] != 'DESC'): ?> 
-                    <a href="?orderby=title&ordertype=DESC"> Title </a>
+                    <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Title </a>
                 <?php else: ?>
-                    <a href="?orderby=title"> Title </a>
+                    <a href="<?php echo urlGenerator($args, 'orderby','title', ['search','limit','orderby']) ?>"> Title </a>
                 <?php endif; ?>
             </div>
         </div>
