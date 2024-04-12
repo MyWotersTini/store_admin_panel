@@ -58,13 +58,17 @@ function add_function(){
 
     add_button.setAttribute('disabled', true);
 
-    let cities_name    = document.getElementById('cities_name').value;
+    let cities_type   = document.getElementById('cities_type').value;
+    let cities_district   = document.getElementById('cities_district').value;
+    let cities_name   = document.getElementById('cities_name').value;
 
     $.ajax({
         url: '/system/server.php',
         type: 'POST',
         data: {
             'action' : 'cities_add',
+            'type' : cities_type,
+            'district_id' : cities_district,
             'name' : cities_name,
         },
         success: function( response ) {
@@ -95,6 +99,7 @@ function edit_func(){
 
     let cities_name    = document.getElementById('cities_name').value;
     let cities_id      = edit_button.getAttribute('cities_id');
+    let cities_district    = document.getElementById('cities_district').value;
     
     $.ajax({
         url: '/system/server.php',
@@ -102,7 +107,8 @@ function edit_func(){
         data: {
             'action' : 'cities_edit',
             'name' : cities_name,
-            'id' : cities_id 
+            'id' : cities_id,
+            'district' : cities_district
         },
         success: function( response ) {
             let data = JSON.parse(response);

@@ -6,13 +6,13 @@ if (empty($_SESSION) || empty($_GET['id'])) {
     exit;
 }
 
-$result = get_cities_by_id($_GET['id']);
-$districts = get_districts();
-// $cities = $result->fetch_row();
-$cities = mysqli_fetch_assoc($result);
-// var_dump($cities);
+$result = get_orders_by_id($_GET['id']);
+$districts = get_districts($args);
+// $orders = $result->fetch_row();
+$orders = mysqli_fetch_assoc($result);
+// var_dump($orders);
 
-if (empty($cities)) {
+if (empty($orders)) {
     header("Location: /");
     exit;
 }
@@ -21,11 +21,11 @@ include "../header.php";
 
 $breadcrumb = array(
     [
-        'name' => 'cities', 
-        'url' => '/cities'
+        'name' => 'orders', 
+        'url' => '/orders'
     ],
     [
-        'name' => 'Edit cities', 
+        'name' => 'Edit orders', 
         'url' => ''
     ]
 );
@@ -34,45 +34,45 @@ createBreadcrumbs($breadcrumb);
 ?>
 
 
-<div id="cities_form_edit" class="form-edit">
+<div id="orders_form_edit" class="form-edit">
     <div class="main_edit">
         <div class="first_text">Editing</div>
         <div class="edit_items">
             <div class="edit_items-line">
-                <div class="edit_items-line-type">Type</div>
+                <div class="edit_items-line-name">Type</div>
                 <div class="edit_items-line-input">
-                    <input id="cities_type" class="uk-input" type="text" value="<?php echo $cities['type']?>" disabled>
-                    <label id="cities_label_type" for="cities_type"></label>
+                    <input id="orders_name" class="uk-input" type="text" value="<?php echo $orders['type']?>" disabled>
+                    <label id="orders_label_name" for="orders_name"></label>
                 </div>
             </div>
             <div class="edit_items-line">
                 <div class="edit_items-line-name">District</div>
                 <div class="edit_items-line-input">
-                    <select id="cities_district" class="uk-select">
+                    <select id="orders_country" class="uk-select">
                         <?php foreach ($districts as $key => $value): ?>
                             <option value="<?php echo $value['id'] ?>"
-                                <?php echo ($value['id'] == $cities['district_id']) ? 'selected' : '' ?>
+                                <?php echo ($value['id'] == $orders['district']) ? 'selected' : '' ?>
                             >
                             <?php echo $value['name'] ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <label id="cities_label_district" for="cities_district"></label>
+                    <label id="orders_label_country" for="orders_country"></label>
                 </div>
             </div>
             <div class="edit_items-line">
                 <div class="edit_items-line-name">Title</div>
                 <div class="edit_items-line-input">
-                    <input id="cities_name" class="uk-input" type="text" value="<?php echo $cities['title']?>">
-                    <label id="cities_label_name" for="cities_name"></label>
+                    <input id="orders_name" class="uk-input" type="text" value="<?php echo $orders['title']?>">
+                    <label id="orders_label_name" for="orders_name"></label>
                 </div>
             </div>
         </div>
         <div class="submit_item">
-            <button id="cities_edit_button" class="uk-button uk-button-default" cities_id="<?php echo $cities['id']?>">Save</button>
+            <button id="orders_edit_button" class="uk-button uk-button-default" orders_id="<?php echo $orders['id']?>">Save</button>
         </div>
     </div>
 </div>
 
-<script src="/js/cities.js"></script>
+<script src="/js/orders.js"></script>
 
 <?php include "../footer.php"; ?>

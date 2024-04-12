@@ -60,15 +60,15 @@ if (!empty($_POST) and !empty($_POST['action'])) {
             break;
 
         case 'cities_edit':
-            districts_edit($_POST);
+            cities_edit($_POST);
             break;
 
         case 'cities_add':
-            districts_add($_POST);
+            cities_add($_POST);
             break;
         
         case 'cities_delete':
-            districts_delete($_POST);   
+            cities_delete($_POST);   
             break;
 
         default:
@@ -498,7 +498,7 @@ function cities_add($data){
         $error['errors']['name'] = 'Завелике поле';
     }else{
 
-        $sql    = "SELECT * FROM `categories` WHERE name='" . $data['name'] . "'";
+        $sql    = "SELECT * FROM `cities` WHERE title='" . $data['name'] . "'";
         $result = mysqli_query($connection, $sql);
         
         if($result->num_rows > 0){
@@ -508,7 +508,8 @@ function cities_add($data){
         }
     }   
     
-    $sql = "INSERT INTO `categories` (`id`, `name`) VALUES (NULL, '" . $data['name'] . "')";
+    $sql = "INSERT INTO `cities` (`id`, `type`, `district_id`, `title`) VALUES (NULL, '" . $data['type'] . "', '" . $data['district_id'] . "', '" . $data['name'] . "');";
+
     mysqli_query($connection, $sql);
 
     if($error['success'] == false){
@@ -549,9 +550,8 @@ function cities_edit($data){
     global $connection;
 
 
-    $sql = "UPDATE `citie` SET `title` = '" . $data['title'] . "' WHERE `cities`.`id` = " . $data['id'];
-    // var_dump($sql);
-    // die;
+    $sql = "UPDATE `cities` SET `title` = '" . $data['name'] . "', `district_id` = '" . $data['district'] . "' WHERE `cities`.`id` = " . $data['id'];
+
     mysqli_query($connection, $sql);
 
     echo json_encode(['success' => 'Дані успішно збережено.']);
@@ -561,7 +561,7 @@ function cities_edit($data){
 
 function cities_delete($data){
     global $connection;
-    $sql = "DELETE FROM `categories` WHERE `categories`.`id` = " . $data['id'];
+    $sql = "DELETE FROM `cities` WHERE `cities`.`id` = " . $data['id'];
     mysqli_query($connection, $sql);
     echo json_encode(['status' => 'success', 'massage' => $_SESSION["user_id"]]);
     return;
