@@ -2,24 +2,24 @@
 include_once "../config.php";
 include "../header.php";
 
-$regions = get_regions($args);
+$districts = get_districts();
+$regions = get_regions();
 
 $breadcrumb = array(
-    array('name' => 'Districts', 'url' => '/districts'),
-    array('name' => 'Add districts', 'url' => '')
+    array('name' => 'districts', 'url' => '/districts'),
+    array('name' => 'Add district', 'url' => '')
 );
 
 createBreadcrumbs($breadcrumb);
 ?>
 
 <form class="uk-form-horizontal uk-margin-large form-add">
-
     <div class="uk-margin">
-        <label class="uk-form-label" for="districts_name">District name</label>
+        <label class="uk-form-label" for="districts_name">Name</label>
         <div>
             <input class="uk-input" id="districts_name" type="text">
         </div>
-        <label id="districts_label_name" for="districts_name"></label>
+        <label id="districts_label_name" for="districts_name"></label>    
     </div>
 
     <div class="uk-margin">
@@ -34,6 +34,8 @@ createBreadcrumbs($breadcrumb);
             <label id="districts_label_region" for="districts_region"></label>
         </div>
     </div>
+
+   
 
     <p uk-margin>
         <button class="uk-button uk-button-default" id="districts_add_button">ADD</button>

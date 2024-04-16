@@ -99,6 +99,7 @@ function edit_func(){
 
     let districts_name    = document.getElementById('districts_name').value;
     let districts_id      = edit_button.getAttribute('districts_id');
+    let districts_region  = document.getElementById('districts_region').value;
     
     $.ajax({
         url: '/system/server.php',
@@ -106,7 +107,8 @@ function edit_func(){
         data: {
             'action' : 'districts_edit',
             'name' : districts_name,
-            'id' : districts_id 
+            'id' : districts_id,
+            'region' : districts_region
         },
         success: function( response ) {
             let data = JSON.parse(response);

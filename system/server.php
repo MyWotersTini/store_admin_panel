@@ -463,7 +463,7 @@ function districts_edit($data){
     global $connection;
 
 
-    $sql = "UPDATE `districts` SET `name` = '" . $data['name'] . "' WHERE `districts`.`id` = " . $data['id'];
+    $sql = "UPDATE `districts` SET `name` = '" . $data['name'] . "', `region_id` = '" . $data['region'] . "'   WHERE `districts`.`id` = " . $data['id'];
     // var_dump($sql);
     // die;
     mysqli_query($connection, $sql);

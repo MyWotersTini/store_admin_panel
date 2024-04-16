@@ -1,6 +1,6 @@
 <?php 
 
-function get_categories($args){
+function get_categories($args = []){
     global $connection;
     $sql = "SELECT * FROM (SELECT categories.* , COUNT(title) as count FROM `categories` LEFT JOIN goods ON goods.category = categories.id GROUP BY categories.id) as d";
     if($args['search']){
@@ -34,7 +34,7 @@ function get_category_by_id($id){
     return mysqli_query($connection, $sql);
 }
 
-function get_manufactures($args){
+function get_manufactures($args = []){
     global $connection;
     $sql = "SELECT * FROM (SELECT manufactures.* , COUNT(title) as count, countries.name as country FROM `manufactures` LEFT JOIN goods ON goods.manufacturer = manufactures.id LEFT JOIN countries ON manufactures.country_id = countries.id GROUP BY manufactures.id) as d";
     if($args['search']){
@@ -73,16 +73,16 @@ function get_goods(){
     return mysqli_query($connection, $sql);
 }
 
-function get_regions($args){
+function get_regions($args = []){
     global $connection;
     $sql = "SELECT * FROM regions";
-    if($args['search']){
+    if(!empty($args['search'])){
         $sql .= " WHERE regions.name LIKE '%" . $args['search'] . "%'";
     }
-    if($args['orderby']){
+    if(!empty($args['search'])){
         $sql .= " ORDER BY  " . $args['orderby'] . " " . $args['ordertype'];
     }
-    if($args['page']){
+    if(!empty($args['search'])){
         $sql .= " LIMIT " . (($args['page'] - 1) * $args['limit']) . "," . $args['limit'];
     }
     // $sql .= " GROUP BY categories.id";
@@ -145,16 +145,16 @@ function get_cities_by_id($id){
     return mysqli_query($connection, $sql);
 }
 
-function get_orders($args){
+function get_orders($args = []  ){
     global $connection;
     $sql = "SELECT * FROM (SELECT orders.* FROM `orders` LEFT JOIN `clients` ON client = clients.id GROUP BY orders.id) as d";
-    if($args['search']){
+    if(!empty($args['search'])){
         $sql .= " WHERE d.title LIKE '%" . $args['search'] . "%' OR d.district LIKE '%" . $args['search'] . "%' OR d.type LIKE '%" . $args['search'] . "%'";
     }  
-    if($args['orderby']){
+    if(!empty($args['search'])){
         $sql .= " ORDER BY  " . $args['orderby'] . " " . $args['ordertype'];
     }
-    if($args['page']){
+    if(!empty($args['search'])){
         $sql .= " LIMIT " . (($args['page'] - 1) * $args['limit']) . "," . $args['limit'];
     }
     //  var_dump($sql);

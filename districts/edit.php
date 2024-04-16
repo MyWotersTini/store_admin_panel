@@ -7,7 +7,7 @@ if (empty($_SESSION) || empty($_GET['id'])) {
 }
 
 $result = get_districts_by_id($_GET['id']);
-$regions = get_regions($args);
+$regions = get_regions();
 // $districts = $result->fetch_row();
 $districts = mysqli_fetch_assoc($result);
 // var_dump($districts);
@@ -48,15 +48,15 @@ createBreadcrumbs($breadcrumb);
             <div class="edit_items-line">
                 <div class="edit_items-line-name">Region</div>
                 <div class="edit_items-line-input">
-                    <select id="districts_country" class="uk-select">
+                    <select id="districts_region" class="uk-select">
                         <?php foreach ($regions as $key => $value): ?>
                             <option value="<?php echo $value['id'] ?>"
-                                <?php echo ($value['id'] == $districts['regions']) ? 'selected' : '' ?>
+                                <?php echo ($value['id'] == $districts['region_id']) ? 'selected' : '' ?>
                             >
                             <?php echo $value['name'] ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <label id="districts_label_country" for="districts_country"></label>
+                    <label id="districts_label_region" for="districts_region"></label>
                 </div>
             </div>
         </div>
