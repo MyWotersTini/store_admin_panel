@@ -9,9 +9,15 @@ if (empty($_SESSION)) {
 include "../header.php";
 
 $args         = array(
-    'search' => $_GET['search'] ?? '',
+    'search'    => $_GET['search']     ?? '',
+    'limit'     => $_GET['limit']      ?? 10,
+    'orderby'   => $_GET ['orderby']   ?? '',
+    'ordertype' => (!empty($_GET ['ordertype']) && $_GET['ordertype'] == 'DESC') ? 'DESC' : 'ASC',
+    'page'      => $_GET['page']       ?? '1',
 );
+
 $regions = get_regions($args); 
+$args['count']      = get_regions_count($args);
 // var_dump($regions);
 $breadcrumb = array(
     array('name' => 'Regions', 'url' => '/regions'),
@@ -21,21 +27,23 @@ $breadcrumb = array(
 ?>
 
 <div class="table_edit">
-    <div class="table_edit-container uk-container">
-    <?php createBreadcrumbs($breadcrumb); ?>
+    <div class="table_edit-container uk-container" >
+        <?php createBreadcrumbs($breadcrumb); ?>
         <div class="table_top_panel"  uk-margin>
             <a class="uk-button uk-button-default add-button" href="/regions/add.php">Create new region</a>
             <div class="table_top_panel-right">
+                <?php limitList($args); ?>
                 <form class="uk-search uk-search-default" method="GET">
                     <button class="uk-search-icon-flip" uk-search-icon></button>
                     <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $args['search'] ?>">
+                    <input type="hidden" name="limit" value="<?php echo $args['limit'] ?>">
                 </form>
                 <a class="uk-button uk-button-default" href="/regions">Clear</a>
-            </div> 
+            </div>
         </div>
 
         <div class="table_edit-header">
-            <div class="table_edit-header-item"> Name </div>
+           <?php table_head_generator(['orderby' => 'name','name' => 'Name'], $args); ?>
         </div>
         <div class="table_edit-content">
             
@@ -52,9 +60,10 @@ $breadcrumb = array(
                                 data-id     ="<?php echo $item['id'] ?>" 
                                 class="red">Trash</a>
                         </div>
-                    </div>
+                    </div>   
                 </div>
             <?php } ?>
+            <?php pagination($args); ?>
         </div>
     </div>
 </div>

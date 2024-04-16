@@ -9,7 +9,7 @@ if (empty($_SESSION)) {
 include "../header.php";
 
 $args         = array(
-    'search'    => $_GET['search'] ?? '',
+    'search'    => $_GET['search']     ?? '',
     'limit'     => $_GET['limit']      ?? 10,
     'orderby'   => $_GET ['orderby']   ?? '',
     'ordertype' => (!empty($_GET ['ordertype']) && $_GET['ordertype'] == 'DESC') ? 'DESC' : 'ASC',
@@ -22,8 +22,6 @@ $new_limit = $args['limit'];
 $show_array = ['search', 'limit', 'orderby', 'ordertype']; 
 
 $newUrl = urlGenerator($args, 'limit', $new_limit, $show_array);
-
-echo $newUrl;
 
 $breadcrumb = array(
     array('name' => 'Manufactures', 'url' => '/manufacture'),

@@ -165,19 +165,22 @@ function urlGenerator($data, $item, $new_data, $show_array){
 
     return $url;
     
-    
-    // перше $data 
-    // друге елемент який треба замінити
-    // значення елемента який треба замінити
-    // які елементи включити до генераціі лінки
-
-    // 1. Якщо ми змінюємо ліміт то викликається ця функція з наступнимим параметрами ($data, 'limit', 25, ['search','limit','orderby','ordertype'])
-    // Відповідно всі значення беруться з data, а лише limit замінюється на нове значення при цьому page не виводиться так як його немає в останньому масиві
-
-    // 2. pagination. ($data, 'page', 2, ['search','limit','orderby','ordertype','page']) виводимо все й замінюємо page
-
-    // 3. orderby ($data, 'orderby', 'type', ['search','limit','orderby']) // ?search=Ва&limit=15&orderby=type
-
-    // 4. ordertype ($data, 'ordertype', 'DESC', ['search','limit','orderby','ordertype']) ?search=Ва&limit-15&orderby=type&ordertype=DESC
 }
+
+// array_merge(['f','d'],['a'],[4,6,9,'hff']) -> ['f','d','a',4,6,9,'hff']
+
+// ['orderby', 'name']
+
+function table_head_generator($data, $args, $get_array = []){ 
+    $urlGenerator_array_1 = array_merge($get_array, ['search','limit','orderby','ordertype']);
+    $urlGenerator_array_2 = array_merge($get_array, ['search','limit','orderby']);
+    ?>
+    <div class="table_edit-header-item">
+        <?php if($args['orderby'] == $data['orderby'] && $args['ordertype'] != 'DESC'): ?>    
+            <a href="<?php echo urlGenerator($args, 'ordertype', 'DESC',  $urlGenerator_array_1) ?>"> <?php echo $data['name'] ?> </a>
+        <?php else: ?>
+            <a href="<?php echo urlGenerator($args, 'orderby', $data['orderby'], $urlGenerator_array_2) ?>"><?php echo $data['name'] ?> </a>
+        <?php endif; ?>
+    </div>
+<?php }
 ?>
