@@ -79,10 +79,10 @@ function get_regions($args = []){
     if(!empty($args['search'])){
         $sql .= " WHERE regions.name LIKE '%" . $args['search'] . "%'";
     }
-    if(!empty($args['search'])){
+    if(!empty($args['orderby'])){
         $sql .= " ORDER BY  " . $args['orderby'] . " " . $args['ordertype'];
     }
-    if(!empty($args['search'])){
+    if(!empty($args['page'])){
         $sql .= " LIMIT " . (($args['page'] - 1) * $args['limit']) . "," . $args['limit'];
     }
     // $sql .= " GROUP BY categories.id";
