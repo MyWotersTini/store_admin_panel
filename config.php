@@ -21,4 +21,4 @@
 		exit();
 	};
 
-	include_once "system/system.php";
+	include_once "functions.php";
