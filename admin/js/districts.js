@@ -28,7 +28,7 @@ function delete_districts() {
     let districts_delete_button = document.getElementById('districts_delete_button');
     let districts_id = districts_delete_button.getAttribute('districts_id');
     $.ajax({
-        url: '/system/server.php',
+        url: '/admin/system/server.php',
         type: 'POST',
         data: {
             'action' : 'districts_delete',
@@ -51,7 +51,7 @@ function open_delete_modal(item){
 }
 
 function districts_list_location(){
-    location.replace('/districts'); 
+    location.replace('/admin/districts'); 
 }
 
 function add_function(){
@@ -63,7 +63,7 @@ function add_function(){
     let districts_region = document.getElementById('districts_region').value;
 
     $.ajax({
-        url: '/system/server.php',
+        url: '/admin/system/server.php',
         type: 'POST',
         data: {
             'action' : 'districts_add',
@@ -102,7 +102,7 @@ function edit_func(){
     let districts_region  = document.getElementById('districts_region').value;
     
     $.ajax({
-        url: '/system/server.php',
+        url: '/admin/system/server.php',
         type: 'POST',
         data: {
             'action' : 'districts_edit',

@@ -17,7 +17,7 @@ if (empty($category)) {
 include "../header.php";
 
 $breadcrumb = array(
-    array('name' => 'Categories', 'url' => '/category'),
+    array('name' => 'Categories', 'url' => '/admin/category'),
     array('name' => 'Edit category', 'url' => '')
 );
 
@@ -41,6 +41,6 @@ createBreadcrumbs($breadcrumb);
         </div>
     </div>
 <div>
-<script src="/js/category.js"></script>
+<script src="/admin/js/category.js"></script>
 
 <?php include "../footer.php"; ?>

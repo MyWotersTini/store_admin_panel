@@ -27,7 +27,7 @@ function delete_category() {
     let category_delete_button = document.getElementById('category_delete_button');
     let category_id = category_delete_button.getAttribute('category_id');
     $.ajax({
-        url: '/system/server.php',
+        url: '/admin/system/server.php',
         type: 'POST',
         data: {
             'action' : 'category_delete',
@@ -50,7 +50,7 @@ function open_delete_modal(item){
 }
 
 function category_list_location(){
-    location.replace('/category'); 
+    location.replace('/admin/category'); 
 }
 
 function add_function(){
@@ -61,7 +61,7 @@ function add_function(){
     let category_name    = document.getElementById('category_name').value;
 
     $.ajax({
-        url: '/system/server.php',
+        url: '/admin/system/server.php',
         type: 'POST',
         data: {
             'action' : 'category_add',
@@ -97,7 +97,7 @@ function edit_func(){
     let category_id      = edit_button.getAttribute('category_id');
     
     $.ajax({
-        url: '/system/server.php',
+        url: '/admin/system/server.php',
         type: 'POST',
         data: {
             'action' : 'category_edit',

@@ -29,7 +29,7 @@ $breadcrumb = array(
     <div class="table_edit-container uk-container" >
         <?php createBreadcrumbs($breadcrumb); ?>
         <div class="table_top_panel"  uk-margin>
-            <a class="uk-button uk-button-default add-button" href="/orders/add.php">Create new orders</a>
+            <a class="uk-button uk-button-default add-button" href="/orders/add.php">Create new order</a>
             <div class="table_top_panel-right">
                 <?php limitList($args); ?>
                 <form class="uk-search uk-search-default" method="GET">
@@ -44,25 +44,41 @@ $breadcrumb = array(
         <div class="table_edit-header">
             <div class="table_edit-header-item">
                 <?php if($args['orderby'] == 'type' && $args['ordertype'] != 'DESC'): ?>    
-                    <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Type </a>
+                    <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Order </a>
                 <?php else: ?>
-                    <a href="<?php echo urlGenerator($args, 'orderby','type', ['search','limit','orderby']) ?>"> Type </a>
+                    <a href="<?php echo urlGenerator($args, 'orderby','order', ['search','limit','orderby']) ?>"> Order </a>
                 <?php endif; ?>
             </div>
 
             <div class="table_edit-header-item">
                 <?php if($args['orderby'] == 'district' && $args['ordertype'] != 'DESC'): ?> 
-                    <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> District </a>
+                    <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Client </a>
                 <?php else: ?>
-                    <a href="<?php echo urlGenerator($args, 'orderby','district', ['search','limit','orderby']) ?>"> District </a>
+                    <a href="<?php echo urlGenerator($args, 'orderby','client', ['search','limit','orderby']) ?>"> Client </a>
                 <?php endif; ?>
             </div>
 
             <div class="table_edit-header-item">
                 <?php if($args['orderby'] == 'title' && $args['ordertype'] != 'DESC'): ?> 
-                    <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Title </a>
+                    <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Sum </a>
                 <?php else: ?>
-                    <a href="<?php echo urlGenerator($args, 'orderby','title', ['search','limit','orderby']) ?>"> Title </a>
+                    <a href="<?php echo urlGenerator($args, 'orderby','title', ['search','limit','orderby']) ?>"> Sum </a>
+                <?php endif; ?>
+            </div>
+
+            <div class="table_edit-header-item">
+                <?php if($args['orderby'] == 'title' && $args['ordertype'] != 'DESC'): ?> 
+                    <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Manager </a>
+                <?php else: ?>
+                    <a href="<?php echo urlGenerator($args, 'orderby','title', ['search','limit','orderby']) ?>"> Manager </a>
+                <?php endif; ?>
+            </div>
+
+            <div class="table_edit-header-item">
+                <?php if($args['orderby'] == 'title' && $args['ordertype'] != 'DESC'): ?> 
+                    <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Status </a>
+                <?php else: ?>
+                    <a href="<?php echo urlGenerator($args, 'orderby','title', ['search','limit','orderby']) ?>"> Status </a>
                 <?php endif; ?>
             </div>
         </div>

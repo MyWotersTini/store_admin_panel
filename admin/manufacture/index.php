@@ -24,7 +24,7 @@ $show_array = ['search', 'limit', 'orderby', 'ordertype'];
 $newUrl = urlGenerator($args, 'limit', $new_limit, $show_array);
 
 $breadcrumb = array(
-    array('name' => 'Manufactures', 'url' => '/manufacture'),
+    array('name' => 'Manufactures', 'url' => '/admin/manufacture'),
 );
 
 ?>
@@ -33,14 +33,14 @@ $breadcrumb = array(
     <div class="table_edit-container uk-container" >
         <?php createBreadcrumbs($breadcrumb); ?>
         <div class="table_top_panel"  uk-margin>
-            <a class="uk-button uk-button-default add-button" href="/manufacture/add.php">Create new manufacture</a>
+            <a class="uk-button uk-button-default add-button" href="/admin/manufacture/add.php">Create new manufacture</a>
             <div class="table_top_panel-right">
                 <?php limitList($args); ?>
                 <form class="uk-search uk-search-default" method="GET">
                     <button class="uk-search-icon-flip" uk-search-icon></button>
                     <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $args['search'] ?>">
                 </form>
-                <a class="uk-button uk-button-default" href="/manufacture">Clear</a>
+                <a class="uk-button uk-button-default" href="/admin/manufacture">Clear</a>
             </div>
         </div>
 
@@ -107,6 +107,6 @@ $breadcrumb = array(
     </div>
 </div>
 
-<script src="/js/manufacture.js"></script>
+<script src="/admin/js/manufacture.js"></script>
 
 <?php include "../footer.php"; ?>

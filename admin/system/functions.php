@@ -51,7 +51,7 @@ function createBreadcrumbs($data = []){
 ?>
     <nav aria-label="Breadcrumb">
         <ul class="uk-breadcrumb">
-            <li><a href="/">Home</a></li>
+            <li><a href="/admin">Home</a></li>
             <?php
             foreach ($data as $item) {
                 echo '<li><a href="' . $item['url'] . '">' . $item['name'] . '</a></li>';

@@ -39,7 +39,7 @@ if (login_button) {
             return;
 
         $.ajax({
-            url: 'system/server.php',
+            url: '/admin/system/server.php',
             type: 'POST',
             data: {
                 'action' : 'review_access',
@@ -76,7 +76,7 @@ if (login_button) {
 if(logout_button){
     logout_button.addEventListener("click", function(){
         $.ajax({
-            url: 'system/server.php',
+            url: '/admin/system/server.php',
             type: 'POST',
             data: {
                 'action' : 'session_unset',               

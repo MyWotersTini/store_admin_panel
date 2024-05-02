@@ -2,7 +2,7 @@
 include_once "../config.php";
 include "../header.php";
 $breadcrumb = array(
-    array('name' => 'Regions', 'url' => '/regions'),
+    array('name' => 'Regions', 'url' => '/admin/regions'),
     array('name' => 'Create new region', 'url' => '')
 );
 
@@ -22,6 +22,6 @@ createBreadcrumbs($breadcrumb);
     <button class="uk-button uk-button-default" id="regions_add_button">ADD</button>
 </p>
 
-<script src="/js/regions.js"></script>
+<script src="/admin/js/regions.js"></script>
 
 <?php include "../footer.php"; ?>

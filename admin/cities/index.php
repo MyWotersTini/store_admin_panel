@@ -20,7 +20,7 @@ $cities             = get_cities($args);
 $args['count']      = get_cities_count($args);
 
 $breadcrumb = array(
-    array('name' => 'Cities', 'url' => '/cities'),
+    array('name' => 'Cities', 'url' => '/admin/cities'),
 );
 
 ?>
@@ -29,7 +29,7 @@ $breadcrumb = array(
     <div class="table_edit-container uk-container" >
         <?php createBreadcrumbs($breadcrumb); ?>
         <div class="table_top_panel"  uk-margin>
-            <a class="uk-button uk-button-default add-button" href="/cities/add.php">Create new cities</a>
+            <a class="uk-button uk-button-default add-button" href="/admin/cities/add.php">Create new cities</a>
             <div class="table_top_panel-right">
                 <?php limitList($args); ?>
                 <form class="uk-search uk-search-default" method="GET">
@@ -37,7 +37,7 @@ $breadcrumb = array(
                     <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $args['search'] ?>">
                     <input type="hidden" name="limit" value="<?php echo $args['limit'] ?>">
                 </form>
-                <a class="uk-button uk-button-default" href="/cities">Clear</a>
+                <a class="uk-button uk-button-default" href="/admin/cities">Clear</a>
             </div>
         </div>
 
@@ -104,6 +104,6 @@ $breadcrumb = array(
     </div>
 </div>
 
-<script src="/js/cities.js"></script>
+<script src="/admin/js/cities.js"></script>
 
 <?php include "../footer.php"; ?>

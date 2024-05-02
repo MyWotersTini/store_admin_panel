@@ -27,7 +27,7 @@ function delete_cities() {
     let cities_delete_button = document.getElementById('cities_delete_button');
     let cities_id = cities_delete_button.getAttribute('cities_id');
     $.ajax({
-        url: '/system/server.php',
+        url: '/admin/system/server.php',
         type: 'POST',
         data: {
             'action' : 'cities_delete',
@@ -50,7 +50,7 @@ function open_delete_modal(item){
 }
 
 function cities_list_location(){
-    location.replace('/cities'); 
+    location.replace('/admin/cities'); 
 }
 
 function add_function(){
@@ -63,7 +63,7 @@ function add_function(){
     let cities_name   = document.getElementById('cities_name').value;
 
     $.ajax({
-        url: '/system/server.php',
+        url: '/admin/system/server.php',
         type: 'POST',
         data: {
             'action' : 'cities_add',
@@ -102,7 +102,7 @@ function edit_func(){
     let cities_district    = document.getElementById('cities_district').value;
     
     $.ajax({
-        url: '/system/server.php',
+        url: '/admin/system/server.php',
         type: 'POST',
         data: {
             'action' : 'cities_edit',

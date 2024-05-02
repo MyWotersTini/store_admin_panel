@@ -22,7 +22,7 @@ include "../header.php";
 $breadcrumb = array(
     [
         'name' => 'Manufactures', 
-        'url' => '/manufacture'
+        'url' => '/admin/manufacture'
     ],
     [
         'name' => 'Edit manufacture', 
@@ -66,6 +66,6 @@ createBreadcrumbs($breadcrumb);
     </div>
 </div>
 
-<script src="/js/manufacture.js"></script>
+<script src="/admin/js/manufacture.js"></script>
 
 <?php include "../footer.php"; ?>

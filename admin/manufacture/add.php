@@ -5,7 +5,7 @@ include "../header.php";
 $countries = get_countries();
 
 $breadcrumb = array(
-    array('name' => 'Manufactures', 'url' => '/manufacture'),
+    array('name' => 'Manufactures', 'url' => '/admin/manufacture'),
     array('name' => 'Add manufacture', 'url' => '')
 );
 
@@ -40,6 +40,6 @@ createBreadcrumbs($breadcrumb);
     </p>
                 </form>
 
-<script src="/js/manufacture.js"></script>
+<script src="/admin/js/manufacture.js"></script>
 
 <?php include "../footer.php"; ?>

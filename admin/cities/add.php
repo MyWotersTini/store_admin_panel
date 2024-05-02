@@ -6,7 +6,7 @@ $cities = get_cities();
 $districts = get_districts();
 
 $breadcrumb = array(
-    array('name' => 'cities', 'url' => '/cities'),
+    array('name' => 'cities', 'url' => '/admin/cities'),
     array('name' => 'Add city', 'url' => '')
 );
 
@@ -49,6 +49,6 @@ createBreadcrumbs($breadcrumb);
     </p>
                 </form>
 
-<script src="/js/cities.js"></script>
+<script src="/admin/js/cities.js"></script>
 
 <?php include "../footer.php"; ?>

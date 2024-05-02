@@ -17,7 +17,7 @@ if (empty($regions)) {
 include "../header.php";
 
 $breadcrumb = array(
-    array('name' => 'Regions', 'url' => '/regions'),
+    array('name' => 'Regions', 'url' => '/admin/regions'),
     array('name' => 'Edit regions', 'url' => '')
 );
 
@@ -41,6 +41,6 @@ createBreadcrumbs($breadcrumb);
         </div>
     </div>
 <div>
-<script src="/js/regions.js"></script>
+<script src="/admin/js/regions.js"></script>
 
 <?php include "../footer.php"; ?>

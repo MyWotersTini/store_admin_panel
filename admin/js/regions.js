@@ -27,7 +27,7 @@ function delete_category() {
     let regions_delete_button = document.getElementById('regions_delete_button');
     let regions_id = regions_delete_button.getAttribute('regions_id');
     $.ajax({
-        url: '/system/server.php',
+        url: '/admin/system/server.php',
         type: 'POST',
         data: {
             'action' : 'regions_delete',
@@ -50,7 +50,7 @@ function open_delete_modal(item){
 }
 
 function regions_list_location(){
-    location.replace('/regions'); 
+    location.replace('/admin/regions'); 
 }
 
 function add_function(){
@@ -61,7 +61,7 @@ function add_function(){
     let regions_name    = document.getElementById('regions_name').value;
 
     $.ajax({
-        url: '/system/server.php',
+        url: '/admin/system/server.php',
         type: 'POST',
         data: {
             'action' : 'regions_add',
@@ -97,7 +97,7 @@ function edit_func(){
     let regions_id      = edit_button.getAttribute('regions_id');
     
     $.ajax({
-        url: '/system/server.php',
+        url: '/admin/system/server.php',
         type: 'POST',
         data: {
             'action' : 'regions_edit',

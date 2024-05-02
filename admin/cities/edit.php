@@ -22,7 +22,7 @@ include "../header.php";
 $breadcrumb = array(
     [
         'name' => 'cities', 
-        'url' => '/cities'
+        'url' => '/admin/cities'
     ],
     [
         'name' => 'Edit cities', 
@@ -73,6 +73,6 @@ createBreadcrumbs($breadcrumb);
     </div>
 </div>
 
-<script src="/js/cities.js"></script>
+<script src="/admin/js/cities.js"></script>
 
 <?php include "../footer.php"; ?>

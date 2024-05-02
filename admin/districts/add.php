@@ -6,7 +6,7 @@ $districts = get_districts();
 $regions = get_regions();
 
 $breadcrumb = array(
-    array('name' => 'districts', 'url' => '/districts'),
+    array('name' => 'districts', 'url' => '/admin/districts'),
     array('name' => 'Add district', 'url' => '')
 );
 
@@ -42,6 +42,6 @@ createBreadcrumbs($breadcrumb);
     </p>
                 </form>
 
-<script src="/js/districts.js"></script>
+<script src="/admin/js/districts.js"></script>
 
 <?php include "../footer.php"; ?>

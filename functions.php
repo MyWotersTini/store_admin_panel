@@ -14,3 +14,4 @@
         echo mysqli_fetch_assoc(mysqli_query($connection, $sql))['value'];
 
     }
+

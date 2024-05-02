@@ -19,7 +19,7 @@ $districts          = get_districts($args);
 $args['count']      = get_districts_count($args);
 
 $breadcrumb = array(
-    array('name' => 'Districts', 'url' => '/districts'),
+    array('name' => 'Districts', 'url' => '/admin/districts'),
 );
 
 // createBreadcrumbs($breadcrumb);
@@ -29,7 +29,7 @@ $breadcrumb = array(
     <div class="table_edit-container uk-container">
     <?php createBreadcrumbs($breadcrumb); ?>
         <div class="table_top_panel"  uk-margin>
-            <a class="uk-button uk-button-default add-button" href="/districts/add.php">Create new district</a>
+            <a class="uk-button uk-button-default add-button" href="/admin/districts/add.php">Create new district</a>
             <div class="table_top_panel-right">
                 <?php limitList($args); ?>
                 <form class="uk-search uk-search-default" method="GET">
@@ -37,7 +37,7 @@ $breadcrumb = array(
                     <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $args['search'] ?>">
                     <input type="hidden" name="limit" value="<?php echo $args['limit'] ?>">
                 </form>
-                <a class="uk-button uk-button-default" href="/districts">Clear</a>
+                <a class="uk-button uk-button-default" href="/admin/districts">Clear</a>
             </div> 
         </div>
 
@@ -81,6 +81,6 @@ $breadcrumb = array(
     </div>
 </div>
 
-<script src="/js/districts.js"></script>
+<script src="/admin/js/districts.js"></script>
 
 <?php include "../footer.php"; ?>

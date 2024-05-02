@@ -2,7 +2,7 @@
 include_once "../config.php";
 include "../header.php";
 $breadcrumb = array(
-    array('name' => 'Categories', 'url' => '/category'),
+    array('name' => 'Categories', 'url' => '/admin/category'),
     array('name' => 'Create new category', 'url' => '')
 );
 
@@ -22,6 +22,6 @@ createBreadcrumbs($breadcrumb);
     <button class="uk-button uk-button-default" id="category_add_button">ADD</button>
 </p>
 
-<script src="/js/category.js"></script>
+<script src="/admin/js/category.js"></script>
 
 <?php include "../footer.php"; ?>
