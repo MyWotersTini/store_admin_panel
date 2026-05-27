@@ -127,3 +127,28 @@
     display:flex;
     justify-content: center;
 }
+
+.client_table .client_item {
+    margin: 0;
+    line-height: 1.5; /* Рекомендуемая высота строки */
+    border-top: 1px solid #000; /* линия-разделитель сверху */
+    border-bottom: 1px solid #000; /* линия-разделитель снизу */
+    width: 100px; /* Задаем фиксированную ширину */
+    display: flex;
+    align-items: center; /* Центрируем текст по вертикали */
+    justify-content: center; /* Центрируем текст по горизонтали */
+}
+
+.client_table .client_item:first-child {
+    border-top: none; /* убираем линию сверху у первого элемента */
+}
+
+.client_table .client_item:last-child {
+    border-bottom: none; /* убираем линию снизу у последнего элемента */
+}
+
+.add-button-order{
+    cursor: not-allowed; /* Задаем курсор */
+    pointer-events: none; /* Запрещаем события указателя мыши */
+    opacity: 0.5; /* Задаем прозрачность */
+}

@@ -147,7 +147,7 @@ function get_cities_by_id($id){
 
 function get_orders($args = []  ){
     global $connection;
-    $sql = "SELECT * FROM (SELECT orders.* FROM `orders` LEFT JOIN `clients` ON client = clients.id GROUP BY orders.id) as d";
+    $sql = "SELECT orders.*, SUM(product_orders.count * product_orders.cost) as total_cost, orders.status, clients.name as client_name, clients.surname as client_surname, clients.address as client_address, clients.phone as client_phone, clients.mail as client_mail, clients.id as client_id FROM orders, product_orders, clients WHERE product_orders.order_id = orders.id AND orders.client = clients.id GROUP BY orders.id;";
     if(!empty($args['search'])){
         $sql .= " WHERE d.title LIKE '%" . $args['search'] . "%' OR d.district LIKE '%" . $args['search'] . "%' OR d.type LIKE '%" . $args['search'] . "%'";
     }  
@@ -163,8 +163,12 @@ function get_orders($args = []  ){
 
 function get_orders_by_id($id){
     global $connection;
-    $sql = "SELECT * FROM `orders` WHERE id = $id";
-    return mysqli_query($connection, $sql);
+    $sql = "SELECT * FROM `orders`, `product_orders` WHERE orders.id = $id AND orders.id = product_orders.order_id;";
+    $sql1 = "SELECT orders.*, SUM(product_orders.count * product_orders.cost) as total_cost, orders.status, clients.name as client_name, clients.surname as client_surname, clients.address as client_address, clients.phone as client_phone, clients.mail as client_mail, clients.id as client_id FROM orders, product_orders, clients WHERE product_orders.order_id = orders.id AND orders.client = clients.id AND orders.id = $id GROUP BY orders.id;";
+    return [
+        'po' => mysqli_query($connection, $sql),
+        'o' => mysqli_query($connection, $sql1)
+    ];
 }
 
 function get_orders_count($args){
@@ -214,6 +218,12 @@ function get_countries(){
 function get_clients(){
     global $connection;
     $sql = "SELECT * FROM `clients`";
+    return mysqli_query($connection, $sql);
+}
+
+function get_clients_by_id($id){
+    global $connection;
+    $sql = "SELECT * FROM `clients` WHERE id = $id";
     return mysqli_query($connection, $sql);
 }
 

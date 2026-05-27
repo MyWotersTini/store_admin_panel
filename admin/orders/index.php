@@ -18,6 +18,7 @@ $args         = array(
 
 $orders             = get_orders($args);
 $args['count']      = get_orders_count($args);
+$clients            = get_clients();
 
 $breadcrumb = array(
     array('name' => 'Orders', 'url' => '/orders'),
@@ -29,7 +30,7 @@ $breadcrumb = array(
     <div class="table_edit-container uk-container" >
         <?php createBreadcrumbs($breadcrumb); ?>
         <div class="table_top_panel"  uk-margin>
-            <a class="uk-button uk-button-default add-button" href="/orders/add.php">Create new order</a>
+            <a class="uk-button uk-button-default add-button add-button-order" href="/admin/orders/add.php" >Create new order</a>
             <div class="table_top_panel-right">
                 <?php limitList($args); ?>
                 <form class="uk-search uk-search-default" method="GET">
@@ -37,13 +38,13 @@ $breadcrumb = array(
                     <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" name="search" value="<?php echo $args['search'] ?>">
                     <input type="hidden" name="limit" value="<?php echo $args['limit'] ?>">
                 </form>
-                <a class="uk-button uk-button-default" href="/orders">Clear</a>
+                <a class="uk-button uk-button-default" href="/admin/orders">Clear</a>
             </div>
         </div>
 
         <div class="table_edit-header">
             <div class="table_edit-header-item">
-                <?php if($args['orderby'] == 'type' && $args['ordertype'] != 'DESC'): ?>    
+                <?php if($args['orderby'] == 'order' && $args['ordertype'] != 'DESC'): ?>    
                     <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Order </a>
                 <?php else: ?>
                     <a href="<?php echo urlGenerator($args, 'orderby','order', ['search','limit','orderby']) ?>"> Order </a>
@@ -51,7 +52,7 @@ $breadcrumb = array(
             </div>
 
             <div class="table_edit-header-item">
-                <?php if($args['orderby'] == 'district' && $args['ordertype'] != 'DESC'): ?> 
+                <?php if($args['orderby'] == 'client' && $args['ordertype'] != 'DESC'): ?> 
                     <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Client </a>
                 <?php else: ?>
                     <a href="<?php echo urlGenerator($args, 'orderby','client', ['search','limit','orderby']) ?>"> Client </a>
@@ -59,26 +60,34 @@ $breadcrumb = array(
             </div>
 
             <div class="table_edit-header-item">
-                <?php if($args['orderby'] == 'title' && $args['ordertype'] != 'DESC'): ?> 
+                <?php if($args['orderby'] == 'total_cost' && $args['ordertype'] != 'DESC'): ?> 
                     <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Sum </a>
                 <?php else: ?>
-                    <a href="<?php echo urlGenerator($args, 'orderby','title', ['search','limit','orderby']) ?>"> Sum </a>
+                    <a href="<?php echo urlGenerator($args, 'orderby','total_cost', ['search','limit','orderby']) ?>"> Sum </a>
                 <?php endif; ?>
             </div>
 
             <div class="table_edit-header-item">
-                <?php if($args['orderby'] == 'title' && $args['ordertype'] != 'DESC'): ?> 
+                <?php if($args['orderby'] == 'date' && $args['ordertype'] != 'DESC'): ?> 
+                    <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Date </a>
+                <?php else: ?>
+                    <a href="<?php echo urlGenerator($args, 'orderby','date', ['search','limit','orderby']) ?>"> Date </a>
+                <?php endif; ?>
+            </div>
+
+            <div class="table_edit-header-item">
+                <?php if($args['orderby'] == 'mang' && $args['ordertype'] != 'DESC'): ?> 
                     <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Manager </a>
                 <?php else: ?>
-                    <a href="<?php echo urlGenerator($args, 'orderby','title', ['search','limit','orderby']) ?>"> Manager </a>
+                    <a href="<?php echo urlGenerator($args, 'orderby','mang', ['search','limit','orderby']) ?>"> Manager </a>
                 <?php endif; ?>
             </div>
 
             <div class="table_edit-header-item">
-                <?php if($args['orderby'] == 'title' && $args['ordertype'] != 'DESC'): ?> 
+                <?php if($args['orderby'] == 'status' && $args['ordertype'] != 'DESC'): ?> 
                     <a href="<?php echo urlGenerator($args, 'ordertype','DESC', ['search','limit','orderby','ordertype']) ?>"> Status </a>
                 <?php else: ?>
-                    <a href="<?php echo urlGenerator($args, 'orderby','title', ['search','limit','orderby']) ?>"> Status </a>
+                    <a href="<?php echo urlGenerator($args, 'orderby','status', ['search','limit','orderby']) ?>"> Status </a>
                 <?php endif; ?>
             </div>
         </div>
@@ -87,21 +96,39 @@ $breadcrumb = array(
             <?php foreach($orders as $item){ ?>
                 <div class="table_edit-content-item"> 
                     <div class="table_edit-content-item-td"> 
-                        <?php echo $item['type'] ?>
+                        <?php echo $item['id'] ?>
 
                         <div class="actions_block">
                             <a href="edit.php?id=<?php echo $item['id'] ?>">Edit</a>
                             <a  
                                 href="#modal_delete_table" 
-                                data-name   ="<?php echo $item['type'] ?>" 
-                                data-country="<?php echo $item['district'] ?>" 
-                                data-id     ="<?php echo $item['id'] ?>" 
-                                data-count  ="<?php echo $item['title'] ?>" 
+                                data-order   ="<?php echo $item['id'] ?>" 
+                                data-client="<?php echo $item['client_id'] ?>" 
+                                data-sum     ="<?php echo $item['total_cost'] ?>" 
+                                data-date  ="<?php echo $item['date'] ?>" 
+                                data-manager  ="<?php echo $item['manager'] ?>" 
+                                data-status  ="<?php echo $item['status'] ?>" 
                                 class="red">Trash</a>
                         </div>
                     </div>
-                    <div class="table_edit-content-item-td"> <?php echo $item['district'] ?> </div>
-                    <div class="table_edit-content-item-td"> <?php echo $item['title'] ?>  </div>
+                    <div class="client_table"> 
+                        <div class="client_item">
+                            <div class="table_edit-content-item-td"> <?php echo $item['client_name'] ?> </div>
+                        </div>
+                        <div class="client_item">
+                            <div class="table_edit-content-item-td"> <?php echo $item['client_surname'] ?> </div>
+                        </div>
+                        <div class="client_item">
+                            <div class="table_edit-content-item-td"> <?php echo $item['address'] ?> </div>
+                        </div>
+                        <div class="client_item">
+                            <div class="table_edit-content-item-td"> <?php echo $item['client_phone'] ?> </div>
+                        </div>
+                    </div>
+                    <div class="table_edit-content-item-td"> <?php echo $item['total_cost'] ?>  </div>
+                    <div class="table_edit-content-item-td"> <?php echo $item['date'] ?>  </div>
+                    <div class="table_edit-content-item-td"> <?php echo $item['manager'] ?>  </div>
+                    <div class="table_edit-content-item-td"> <?php echo $item['status'] ?>  </div>
                 </div>
             <?php } ?>
 
@@ -120,6 +147,6 @@ $breadcrumb = array(
     </div>
 </div>
 
-<script src="/js/orders.js"></script>
+<script src="/admin/js/orders.js"></script>
 
 <?php include "../footer.php"; ?>

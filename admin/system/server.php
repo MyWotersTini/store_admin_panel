@@ -71,6 +71,18 @@ if (!empty($_POST) and !empty($_POST['action'])) {
             cities_delete($_POST);   
             break;
 
+        case 'orders_edit':
+            orders_edit($_POST);   
+            break;
+
+        case 'orders_add':
+            orders_delete($_POST);   
+            break;
+
+        case 'orders_delete':
+            orders_delete($_POST);   
+            break;
+
         default:
             # code...
             break;

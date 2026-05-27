@@ -7,10 +7,14 @@ if (empty($_SESSION) || empty($_GET['id'])) {
 }
 
 $result = get_orders_by_id($_GET['id']);
-$districts = get_districts($args);
 // $orders = $result->fetch_row();
-$orders = mysqli_fetch_assoc($result);
-// var_dump($orders);
+$orders = mysqli_fetch_assoc($result['o']);
+$product_orders = $result['po'];
+echo '<pre>';
+var_dump($orders);
+var_dump($product_orders);
+echo '</pre>';
+
 
 if (empty($orders)) {
     header("Location: /");
@@ -38,22 +42,56 @@ createBreadcrumbs($breadcrumb);
     <div class="main_edit">
         <div class="first_text">Editing</div>
         <div class="edit_items">
+
             <div class="edit_items-line">
-                <div class="edit_items-line-name">Type</div>
+                <div class="edit_items-line-name">Client name</div>
                 <div class="edit_items-line-input">
-                    <input id="orders_name" class="uk-input" type="text" value="<?php echo $orders['type']?>" disabled>
+                    <input id="orders_name" class="uk-input" type="text" value="<?php echo $orders['client_name']?>">
                     <label id="orders_label_name" for="orders_name"></label>
                 </div>
             </div>
+
             <div class="edit_items-line">
-                <div class="edit_items-line-name">District</div>
+                <div class="edit_items-line-name">Client surname</div>
+                <div class="edit_items-line-input">
+                    <input id="orders_surname" class="uk-input" type="text" value="<?php echo $orders['client_surname']?>">
+                    <label id="orders_label_surname" for="orders_surname"></label>
+                </div>
+            </div>
+
+            <div class="edit_items-line">
+                <div class="edit_items-line-name">Address</div>
+                <div class="edit_items-line-input">
+                    <input id="orders_address" class="uk-input" type="text" value="<?php echo $orders['address']?>">
+                    <label id="orders_label_address" for="orders_address"></label>
+                </div>
+            </div>
+
+            <div class="edit_items-line">
+                <div class="edit_items-line-name">Sum</div>
+                <div class="edit_items-line-input">
+                    <input id="orders_address" class="uk-input" type="text" value="<?php echo $orders['total_cost']?>" disabled>
+                    <label id="orders_label_address" for="orders_address"></label>
+                </div>
+            </div>
+
+            <div class="edit_items-line">
+                <div class="edit_items-line-name">Date</div>
+                <div class="edit_items-line-input">
+                    <input id="orders_date" class="uk-input" type="datetime-local" value="<?php echo $orders['date']?>">
+                    <label id="orders_label_date" for="orders_date"></label>
+                </div>
+            </div>
+
+            <div class="edit_items-line">
+                <div class="edit_items-line-name">Product</div>
                 <div class="edit_items-line-input">
                     <select id="orders_country" class="uk-select">
-                        <?php foreach ($districts as $key => $value): ?>
-                            <option value="<?php echo $value['id'] ?>"
-                                <?php echo ($value['id'] == $orders['district']) ? 'selected' : '' ?>
+                        <?php foreach ($product_orders as $key => $item): ?>
+                            <option value="<?php echo $item['id'] ?>"
+                                <?php echo ($item['id'] == $item['name']) ? 'selected' : '' ?>
                             >
-                            <?php echo $value['name'] ?></option>
+                            <?php echo $item['name'] ?></option>
                         <?php endforeach; ?>
                     </select>
                     <label id="orders_label_country" for="orders_country"></label>
